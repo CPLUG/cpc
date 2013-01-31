@@ -3,23 +3,14 @@ cpc
 
 Commands
 ---
-cpc submit [contest] file...
-
-cpc submissions [user]
-
-cpc scoreboard [contest]
-
-cpc grade [contests]
-
-cpc contests [-a]
-
-cpc register
-
-cpc problems [contest]
-
-cpc help
-
-
+* cpc submit [contest] file...
+* cpc submissions [user]
+* cpc scoreboard [contest]
+* cpc grade [contests]
+* cpc contests [-a]
+* cpc register
+* cpc problems [contest]
+* cpc help
 
 Directory Structure
 ---
@@ -40,11 +31,11 @@ Directory Structure
 
 DB Tables
 ---
-User: id, name, alias
-Problem: id, competitionId, name, alias, points, type?
-Contest: id, name, alias, start, end
-Submission: id, userId, problemId, submissionTime, status, executionTime, errorId
-Error: id, description
+* User: id, name, alias
+* Problem: id, competitionId, name, alias, points, type?
+* Contest: id, name, alias, start, end
+* Submission: id, userId, problemId, submissionTime, status, executionTime, errorId
+* Error: id, description
 
 
 Do users have to register to compete? Or just use the CSL login
