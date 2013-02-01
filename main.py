@@ -3,6 +3,9 @@
 
 import sys
 
+def activeContest():
+    pass
+
 def submit(args):
     print('Submit: '+','.join(args))
 #TODO: How to handle permissions/setuid?
@@ -11,6 +14,7 @@ def submissions(args):
     print('Submissions: '+','.join(args))
 
 def scoreboard(args):
+    
     print('Scoreboard: '+','.join(args))
 
 def grade(args):

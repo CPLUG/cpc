@@ -38,4 +38,6 @@ DB Tables
 * Error: id, description
 
 
-Do users have to register to compete? Or just use the CSL login
+Do users have to register to compete? Or just use the CSL login?
+Error table? Or just an enumeration/string?
+Where will configuration options be saved?
