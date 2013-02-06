@@ -1,0 +1,109 @@
+                               FrozenChess                                  
+   You are playing chess with a friend when a cold wind suddenly blows in and
+freezes the chess board! Luckily, one of your pieces was untouched by the wind.
+Now is your chance to strike! Unfortunately, all of your other pieces are
+frozen, and you can't move through them (ie, standard chess rules still apply).
+
+   Given the position of all your pieces, the position of all your opponent's
+pieces, and the position and type of the unfrozen piece, determine if it's
+possible to eliminate every single one of your opponent's pieces with just your
+one unfrozen piece.
+
+   Note that Pawns are too small weak to remain unfrozen.
+
+
+                                  Input
+   The first line of input will consist of two space-seperated integers, x and
+y, the dimensions of the chess board. The next line will contain two integers,
+a and b, followed by a single character, c. (a, b) is the position of the
+unfrozen piece, and c will be either 'K', 'R', 'B', 'Q', 'i', representing the
+type of the unfrozen piece (Knight, Rook, Bishop, Queen, and King,
+respectively).
+
+   The next line of input will contain one integer, K, the number of frozen
+pieces that you have left on the board. The next K lines will contain two
+integers, a_k and b_k, such that you have a frozen piece at (a_k, b_k).
+
+   Lastly, the next line of input will contain one integer, J, the number of
+frozen pieces your opponent has left on the board. The next J lines will
+contain two integers, a_j and b_j, such that your opponent has a frozen piece
+at (a_j, b_j).
+
+   Note that all indicies are 1-index. Thus, the bottom-left corner of the
+board is (1,1), and the top-right corner is (x,y).
+
+
+                                 Output
+   The output will single line: "Y" if every opponent piece on the board
+can be captured by your one unfrozen piece, or "N" otherwise.
+
+
+                               Constraints
+   1 < x <= 15
+   1 < y <= 15
+   0 < a <= x
+   0 < b <= y
+   0 <= K <= x*y
+   0 < a_k <= x
+   0 < b_k <= y
+   0 <= J <= x*y-K-1
+   0 < a_j <= x
+   0 < b_j <= y
+
+
+                                 Samples
+Input 1:
+2 3
+1 1 B
+0
+1
+1 3
+
+Output 1:
+Y
+
+
+Input 2:
+3 3
+1 1 K
+3
+2 3
+2 2
+3 2
+1
+3 3
+
+Output 2:
+N
+
+
+Input 3:
+3 3
+1 1 Q
+3
+2 3
+2 2
+1 2
+1
+3 3
+
+Output 3:
+Y
+
+
+Input 4:
+5 5
+3 3 K
+0
+8
+1 2
+1 4
+2 1
+2 5
+4 1
+4 5
+5 2
+5 4
+
+Output 4:
+Y

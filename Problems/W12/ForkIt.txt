@@ -1,0 +1,70 @@
+                                 ForkIt  (We'llDoItLive!)                      
+   You have written the best program ever, the SuperProgram (TM), that can
+accomplish any task that you give it! However, there is one small downside to
+it: you can only start it once. Luckily, at the beginning of the program there
+is a loop where you can fork() as many times as you wish, creating two copies
+of your process. Both of these sub-processes can either fork again, or
+accomplish a task. Each of these forks takes some time to execute, though.
+
+   Note that each copy of the program may start working on the task at
+different times. For instance, process 1 (P1) may fork to produce P2 and P3.
+P2 may immediately start working on a task concurrently as P3 forks again (to
+produce P4 and P5).
+
+   You may assume that each task will always complete in the same amount of
+time, no matter how many processes are running concurrently. Also, you may
+assume that it does not matter in which order you complete the tasks.
+
+   You have a list of tasks you wish to accomplish, as well as how long it will
+take the SuperProgram (TM) to accomplish the task (not counting any forking
+time). Given the forking cost, what is the earliest the SuperProgram (TM) will
+be able to complete every task?
+
+
+                                  Input
+   The first line of the input will be a single integer, f, the time it takes
+to fork the SuperProgram (TM) (in milliseconds).
+
+   The next line will be a single integer, k, the number of tasks to complete.
+The next line will have k space-seperated integers, t_i, representing the time
+it takes to complete the ith task on the list (in milliseconds).
+
+
+                                 Output
+   The minimum ammount of time, in milliseconds, required for the SuperProgram
+(TM) to fork an appropriate number of copies of itself and accomplish the
+all of tasks.
+
+
+                               Constraints
+   0 < f <= 2000
+   0 < k <= 1000
+   0 < t_i <= 2000
+
+
+                                 Samples
+Input 1:
+1000
+2
+1 1
+
+Output 1:
+1001
+
+
+Input 2:
+2000
+4
+3 6 9 12
+
+Output 2:
+4012
+
+
+Input 3:
+2000
+1
+10
+
+Output 3:
+10

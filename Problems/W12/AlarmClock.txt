@@ -1,0 +1,72 @@
+                                AlarmClock
+   Your friend has difficulties waking up in the morning, and so he wrote a
+simple alarm clock program (in PHP, of course). The program works perfectly,
+except for one design oversight: the wakeup time is too small to read, with
+his poor vision.
+
+   Unfortunately, your friend is a terribly shoddy programmer, and can't figure
+out how to enlarge his output times. Upon hearing of his plight, you decide to
+help out. Your friend says that he wants to transform the text to make it look
+like a digital clock such that each number is 7 chars tall, and 7 chars wide.
+
+
+                                  Input
+   Input will consist of a single line, containing the time. The time will be
+written in a 24-hour format, that is, without AM/PM designations. The time will
+be written as 1 or 2 number digits, followed by a colon, followed by 2 number
+digits.
+
+
+                                 Output
+   The output will be a 33x7 rectangle, representing the time given in the
+input. Each number should be 7x7, with each number being padded by a column of
+spaces. The 2nd and 3rd numbers will be seperated further by two '*' characters
+on the 3rd and 5th rows, replacing the input time's colon. Trailing whitespace
+will be ignored. See below for examples.
+
+
+                               Constraints
+   The time will be a valid 24-hour time. It will consist of a number in the
+range 0 to 23 (inclusive), immediately followed by a colon, followed by a
+number in the range 00 to 59 (inclusive). If the first number is between 0 and
+9, it may or may not be proceeded by a 0 (08:00 and 8:00 are both valid).
+
+
+                                 Samples
+Input 1:
+16:59
+
+Output 1:
+         -----     -----   -----  
+      | |         |       |     | 
+      | |       * |       |     | 
+      | |-----     -----   -----| 
+      | |     | *       |       | 
+      | |     |         |       | 
+         -----     -----   -----  
+
+
+Input 2:
+23:47
+
+Output 2:
+ -----   -----             -----  
+      |       |   |     |       | 
+      |       | * |     |       | 
+ -----   -----|    -----|       | 
+|             | *       |       | 
+|             |         |       | 
+ -----   -----                    
+
+
+Input 3:
+8:00
+
+Output 3:
+ -----   -----     -----   -----  
+|     | |     |   |     | |     | 
+|     | |     | * |     | |     | 
+|     | |-----|   |     | |     | 
+|     | |     | * |     | |     | 
+|     | |     |   |     | |     | 
+ -----   -----     -----   -----  
