@@ -38,4 +38,11 @@ end
 
 
 command = ARGV[0].to_s.strip.to_sym
-CPC.instance.method(command).call
+
+if command.length == 0
+   puts "usage: cpc <command>"
+else
+   CPC.instance.method(command).call
+end
+
+
