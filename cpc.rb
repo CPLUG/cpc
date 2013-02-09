@@ -37,12 +37,14 @@ class CPC
 end
 
 
-command = ARGV[0].to_s.strip.to_sym
+cmd = ARGV[0].to_s.strip.downcase.to_sym
 
-if command.length == 0
+if cmd.length == 0
    puts "usage: cpc <command>"
-else
-   CPC.instance.method(command).call
 end
 
+if not CPC.instance.methods.include? cmd
+   puts "'#{cmd}' is not a valid command"
+end
 
+CPC.instance.method(cmd).call
