@@ -1,50 +1,46 @@
-require 'singleton'
-
-
-class CPC
-   include Singleton
-
-   @user = ENV['USERNAME']
-   @args = ARGV[1..-1]
-
-   def submissions
-      raise NotImplementedError
-   end
-   
-   def scoreboard
-      raise NotImplementedError
-   end
-
-   def grade
-      raise NotImplementedError
-   end
-
-   def contests
-      raise NotImplementedError
-   end
-
-   def register
-      raise NotImplementedError
-   end
-
-   def problems
-      raise NotImplementedError
-   end
-
-   def help
-      raise NotImplementedError
-   end
+def submissions(user, args)
+   raise NotImplementedError
 end
 
-
-cmd = ARGV[0].to_s.strip.downcase.to_sym
-
-if cmd.length == 0
-   puts "usage: cpc <command>"
+def scoreboard(user, args)
+   raise NotImplementedError
 end
 
-if not CPC.instance.methods.include? cmd
-   puts "'#{cmd}' is not a valid command"
+def grade(user, args)
+   raise NotImplementedError
 end
 
-CPC.instance.method(cmd).call
+def contests(user, args)
+   raise NotImplementedError
+end
+
+def register(user, args)
+   raise NotImplementedError
+end
+
+def problems(user, args)
+   raise NotImplementedError
+end
+
+def help(user, args)
+   raise NotImplementedError
+end
+
+command = ARGV[0].to_s.strip.downcase
+commands = {
+   "submissions" => Object.method(:submissions),
+   "scoreboard" => Object.method(:scoreboard),
+   "grade" => Object.method(:grade),
+   "contests" => Object.method(:contests),
+   "register" => Object.method(:register),
+   "problems" => Object.method(:problems),
+   "help" => Object.method(:help)
+}
+
+if command.length == 0
+   puts 'usage: cpc <command>'
+elsif not commands.include? command
+   puts "'#{command}' is not a valid command"
+else
+   Object.method(command).call(ENV['USERNAME'], ARGV[1..-1])
+end
