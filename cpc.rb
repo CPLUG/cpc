@@ -42,5 +42,5 @@ if command.length == 0
 elsif not commands.include? command
    puts "'#{command}' is not a valid command"
 else
-   Object.method(command).call(ENV['USERNAME'], ARGV[1..-1])
+   commands[command].call(ENV['USERNAME'], ARGV[1..-1])
 end
