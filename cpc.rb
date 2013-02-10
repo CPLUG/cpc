@@ -6,57 +6,38 @@ if __FILE__ != $0
     exit!
 end
 
-$commands_summary = <<eos
-The following commands are available:
+$commands_summary = 'The following commands are available:
 help           View help text on a command
 submissions    View your submissions
 scoreboard     View the scoreboard
 grade          Check your grade
 contests       List running contests
 register       Register for the contest
-problems       List problems
-eos
-
-# fix double newlines in help display
-$commands_summary.rstrip!
+problems       List problems'
 
 $commands = {
-    :submissions => <<eos,
-Usage: cpc submissions
+    :submissions => 'Usage: cpc submissions
 
 Description
-eos
-    :scoreboard => <<eos,
-Usage: cpc scoreboard
+',  :scoreboard  => 'Usage: cpc scoreboard
 
 Description
-eos
-    :grade => <<eos,
-Usage: cpc grade
+',  :grade       => 'Usage: cpc grade
 
 Description
-eos
-    :contests => <<eos,
-Usage: cpc contests
+',  :contests    => 'Usage: cpc contests
 
 Description
-eos
-    :register => <<eos,
-Usage: cpc register
+',  :register    => 'Usage: cpc register
 
 Description
-eos
-    :problems => <<eos,
-Usage: cpc problems
+',  :problems    => 'Usage: cpc problems
 
 Description
-eos
-    :help => <<eos,
-Usage: cpc help <command>
+',  :help        => "Usage: cpc help <command>
 
 #{$commands_summary}
-eos
-}
+"}
 
 def submissions(user, args)
     false
@@ -88,21 +69,13 @@ def help(user, cmd)
         puts $commands[cmd]
         true
     else
-        puts <<eos
-No such command.
-
-#{$commands_summary}
-eos
+        puts "No such command.\n\n#{$commands_summary}"
         false
     end
 end
 
 if ARGV[0] == nil
-    puts <<eos
-Usage: cpc <command>
-
-#{$commands_summary}
-eos
+    puts "Usage: cpc <command>\n\n#{$commands_summary}"
 else
     cmd = ARGV[0].strip.downcase.to_sym
     ARGV[0] = `/usr/bin/whoami`.strip
