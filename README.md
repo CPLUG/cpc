@@ -35,9 +35,8 @@ DB Tables
 * Problem: id, competitionId, name, alias, points, type?
 * Contest: id, name, alias, start, end
 * Submission: id, userId, problemId, submissionTime, status, executionTime, errorId
-* Error: id, description
 
 
 Do users have to register to compete? Or just use the CSL login?
-Error table? Or just an enumeration/string?
+
 Where will configuration options be saved?
