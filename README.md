@@ -37,6 +37,8 @@ DB Tables
 * Submission: id, userId, problemId, submissionTime, status, executionTime, errorId
 
 
-Do users have to register to compete? Or just use the CSL login?
-
-Where will configuration options be saved?
+* Do users have to register to compete? Or just use the CSL login?
+* Error table? Or just an enumeration/string?
+* Where will contest and problem configuration options be saved?
+* What configuration options will be available?
+* What will the format of the config files look like?
