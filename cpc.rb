@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 #change to #!/home/pfaiman/ruby/bin/ruby to prevent tampering with runtime
 
+require 'pathname'
+
+
 if __FILE__ != $0
     puts 'Do not include or require this file.'
     exit!
@@ -60,10 +63,28 @@ def register(user, args)
 end
 
 def problems(user, args)
-    false
+    in_name = args[0]
+    prob_names = {}
+
+    Dir['Problems/W12/*'].each do |path|
+        name = Pathname.new(path).basename.to_s.split('.').first
+        prob_names[name] = path
+    end
+
+    if prob_names.keys.include? in_name
+        File.open(prob_names[in_name]) do |prob_file|
+            while line = prob_file.gets do
+                puts line
+            end
+        end
+    else
+        puts 'Available problems: ' + prob_names.keys.join(', ')
+    end
+
+    true
 end
 
-def help(user, cmd)
+def help(user, args)
     cmd = cmd.strip.downcase.to_sym unless cmd.kind_of?(Symbol)
     if $commands.include? cmd
         puts $commands[cmd]
@@ -78,12 +99,10 @@ if ARGV[0] == nil
     puts "Usage: cpc <command>\n\n#{$commands_summary}"
 else
     cmd = ARGV[0].strip.downcase.to_sym
-    ARGV[0] = `/usr/bin/whoami`.strip
+    user = `/usr/bin/whoami`.strip
     if $commands.include? cmd
         cmd_f = method cmd
-        if ARGV.length == cmd_f.arity || cmd_f.arity == -1
-            exit(cmd_f.call *ARGV)
-        end
+        exit(cmd_f.call(user, ARGV[1..-1]))
     end
     exit(help *[ARGV[0], cmd])
 end
