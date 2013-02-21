@@ -85,12 +85,12 @@ def problems(user, args)
 end
 
 def help(user, args)
-    cmd = cmd.strip.downcase.to_sym unless cmd.kind_of?(Symbol)
-    if $commands.include? cmd
+    if args.length == 1
+        cmd = args[0].strip.downcase.to_sym
         puts $commands[cmd]
         true
     else
-        puts "No such command.\n\n#{$commands_summary}"
+        puts $commands[:help]
         false
     end
 end
@@ -103,6 +103,8 @@ else
     if $commands.include? cmd
         cmd_f = method cmd
         exit(cmd_f.call(user, ARGV[1..-1]))
+    else
+        puts "No such command.\n\n#{$commands_summary}"
+        exit(false)
     end
-    exit(help *[ARGV[0], cmd])
 end
