@@ -1,8 +1,13 @@
-cpc
-===
+# cpc
 
-Commands
----
+## Install
+
+* Install Ruby 1.9.x and Gem
+* `gem install bundler`
+* `sudo apt-get install libsqlite3-dev`
+* `bundle install`
+
+## Commands
 * cpc submit [contest] file...
 * cpc submissions [user]
 * cpc scoreboard [contest]
@@ -12,8 +17,7 @@ Commands
 * cpc problems [contest]
 * cpc help
 
-Directory Structure
----
+## Directory Structure
 ```
 [contest]/
    standings
@@ -29,8 +33,7 @@ Directory Structure
 ```
 
 
-DB Tables
----
+## DB Tables
 * User: id, name, alias
 * Problem: id, competitionId, name, alias, points, type?
 * Contest: id, name, alias, start, end
