@@ -16,49 +16,57 @@ end
 
 #This really should be defined elsewhere...
 $problem_loc = '/home/michael/cpc/Problems'
-$active_competition = 'W12'
+$active_contest = 'W12'
 $cpc_loc = '/home/michael/cpc'
 
 $commands_summary = 'The following commands are available:
 help           View help text on a command
-submit         View your submissions
-submissions    View your submissions
+submit         Add a new submission
+submissions    View your graded submissions
 scoreboard     View the scoreboard
-grade          Check your grade
 contests       List running contests
-register       Register for the contest
-problems       List problems'
+problems       List problems
+grade          Grade submissions (internal only)'
 
 $commands = {
-    :submissions => 'Usage: cpc submissions
+    :submissions => 'Usage: cpc submissions [-c contest] [-u user]
 
-Description
-',  :scoreboard  => 'Usage: cpc scoreboard
+Lists all submissions made by the specified user, or the current user if none is specified.
 
-Description
+The -c flag filters submissions to include only those made in the specified contest.
+',  :scoreboard  => 'Usage: cpc scoreboard [-c contest] [-a]
+
+Gives the scoreboard for the specified contest, or the default contest if none is specified.
+
+The -a flag will cause this command to factor in results from submissions made after the contest has ended.
 ',  :grade       => 'Usage: cpc grade
 
-Description
-',  :submit       => 'Usage: cpc submit <problem>
+Runs the grader on all submissions in the queue.
 
-Description
+For internal use only.
+',  :submit       => 'Usage: cpc submit <problem> <file...>
+
+Submits files to the specified problem.
 ',  :contests    => 'Usage: cpc contests [-a]
 
-Description
-',  :register    => 'Usage: cpc register
+By default, lists all active contests. The default contest will be followed by an asterisk (*).
 
-Description
-',  :problems    => 'Usage: cpc problems
+The default contest is the contest that has last started, and has not yet finished.
 
-Description
-',  :help        => "Usage: cpc help <command>
+The -a flag will cause this command to display all contests, including those that have already ended and those that haven\' started yet.
+',  :problems    => 'Usage: cpc problems [-c contest]
+
+Lists all problems for the specified contest, or the default contest if none is specified.
+
+Unsolved problems will be followed by an asterisk (*).
+',  :help        => "Usage: cpc help [command]
 
 #{$commands_summary}
 "}
 
 def submit(user, args)
     problem = File.basename(args.shift)
-    problem_dir = "#{$problem_loc}/#{$active_competition}/#{problem}"
+    problem_dir = "#{$problem_loc}/#{$active_contest}/#{problem}"
     
     if !problem
         puts 'Must specify problem.'
@@ -73,7 +81,7 @@ def submit(user, args)
         args.each do |file|
             # How paranoid do we want to be for now...
             puts "Submitting #{file}... "
-            system("cat #{file} | #{$cpc_loc}/fancyCat #{$active_competition} #{problem} #{file}")
+            system("cat #{file} | #{$cpc_loc}/fancyCat #{$active_contest} #{problem} #{file}")
         end
         true
     end

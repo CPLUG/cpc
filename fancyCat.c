@@ -6,7 +6,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#define PROBLEMS_LOC "/home/michael/cpc/Problems"
+#define PROBLEMS_LOC "/home/mlekande/CPC"
 #define MAX_FILESIZE 2560
 
 void safe_chdir(char *dir) {
@@ -38,6 +38,7 @@ int main(int argc, char *argv[]) {
     safe_chdir(competition);
     safe_chdir(problem);
     chdir("submissions/queued");
+    mkdir(user, S_IRWXU|S_IRGRP|S_IXGRP);
     safe_chdir(user);
     
     f = fopen(file, "w+");
