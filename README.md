@@ -21,15 +21,21 @@
 ```
 [contest]/
    standings
-   .config -- Only used during initialization
+   config.yaml -- Only used during initialization
    [problem]/
       [problem].txt
-      .config -- Only used during initialization
+      config.yaml -- Optional, only used during initialization
       tests/
          [testId].in
          [testId].out
-      [username].[submission #]/
-         [user files]
+      submissions/
+         graded/
+            [username].[submission #]/
+               [user files]
+         queued/
+            [username]/
+               [user files]
+
 ```
 
 

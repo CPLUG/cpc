@@ -14,8 +14,14 @@ if __FILE__ != $0
     exit!
 end
 
+#This really should be defined elsewhere...
+$problem_loc = '/home/michael/cpc/Problems'
+$active_competition = 'W12'
+$cpc_loc = '/home/michael/cpc'
+
 $commands_summary = 'The following commands are available:
 help           View help text on a command
+submit         View your submissions
 submissions    View your submissions
 scoreboard     View the scoreboard
 grade          Check your grade
@@ -33,7 +39,10 @@ Description
 ',  :grade       => 'Usage: cpc grade
 
 Description
-',  :contests    => 'Usage: cpc contests
+',  :submit       => 'Usage: cpc submit <problem>
+
+Description
+',  :contests    => 'Usage: cpc contests [-a]
 
 Description
 ',  :register    => 'Usage: cpc register
@@ -46,6 +55,29 @@ Description
 
 #{$commands_summary}
 "}
+
+def submit(user, args)
+    problem = File.basename(args.shift)
+    problem_dir = "#{$problem_loc}/#{$active_competition}/#{problem}"
+    
+    if !problem
+        puts 'Must specify problem.'
+        false
+    elsif !File.directory?(problem_dir)
+        puts "Invalid problem: #{problem}"
+        false
+    else
+        args.each do |fileName|
+            # How paranoid do we want to be for now...
+            system("cat #{fileName} | #{$cpc_loc}/fancyCat #{problem} #{fileName}")
+        end
+        
+        submission = "#{$problem_dir}/submissions/queued/#{user}/*"
+        puts "Submitted files quened to be graded for problem #{problem}:"
+        puts Dir[submission].map{|path| File.basename(path)}.join(' ')
+        true
+    end
+end
 
 def submissions(user, args)
     false
