@@ -3,6 +3,10 @@ require 'bundler/setup'
 
 require 'sqlite3'
 
+task :make_fancyCat do
+    system('gcc -o fancyCat fancyCat.c')
+    system('chmod +s fancyCat')
+end
 
 task :init_db do
     db = SQLite3::Database.new 'cpc.db'

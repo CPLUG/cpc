@@ -66,15 +66,15 @@ def submit(user, args)
     elsif !File.directory?(problem_dir)
         puts "Invalid problem: #{problem}"
         false
+    elsif args.length == 0
+        puts 'No files specified'
+        false
     else
-        args.each do |fileName|
+        args.each do |file|
             # How paranoid do we want to be for now...
-            system("cat #{fileName} | #{$cpc_loc}/fancyCat #{problem} #{fileName}")
+            puts "Submitting #{file}... "
+            system("cat #{file} | #{$cpc_loc}/fancyCat #{$active_competition} #{problem} #{file}")
         end
-        
-        submission = "#{$problem_dir}/submissions/queued/#{user}/*"
-        puts "Submitted files quened to be graded for problem #{problem}:"
-        puts Dir[submission].map{|path| File.basename(path)}.join(' ')
         true
     end
 end
