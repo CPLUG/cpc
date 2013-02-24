@@ -41,8 +41,8 @@ task :init_db do
     db.execute '
         CREATE TABLE submission (
             id INTEGER PRIMARY KEY,
-            userId INTEGER,
-            problemId INTEGER,
+            user INTEGER,
+            problem INTEGER,
             time INTEGER,
             status STRING,
             executionTime INTEGER,
