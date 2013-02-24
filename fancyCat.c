@@ -6,7 +6,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#define PROBLEMS_LOC "/home/mlekande/CPC"
+#define PROBLEMS_LOC "/home/michael/cpc/Problems"
 #define MAX_FILESIZE 2560
 
 void safe_chdir(char *dir) {

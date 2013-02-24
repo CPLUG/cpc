@@ -64,9 +64,17 @@ Unsolved problems will be followed by an asterisk (*).
 #{$commands_summary}
 "}
 
+def default_contest
+    return 'W12'
+end
+
 def submit(user, args)
-    problem = File.basename(args.shift)
-    problem_dir = "#{$problem_loc}/#{$active_contest}/#{problem}"
+    problem = args.shift
+    if problem
+        problem = File.basename(problem)
+    end
+    
+    problem_dir = "#{$problem_loc}/#{default_contest}/#{problem}"
     
     if !problem
         puts 'Must specify problem.'
@@ -81,7 +89,7 @@ def submit(user, args)
         args.each do |file|
             # How paranoid do we want to be for now...
             puts "Submitting #{file}... "
-            system("cat #{file} | #{$cpc_loc}/fancyCat #{$active_contest} #{problem} #{file}")
+            system("cat #{file} | #{$cpc_loc}/fancyCat #{default_contest} #{problem} #{file}")
         end
         true
     end
@@ -100,11 +108,22 @@ def grade(user, args)
 end
 
 def contests(user, args)
-    false
-end
-
-def register(user, args)
-    false
+    sql = 'SELECT name FROM contest'
+    if args.length != 1 || args[0] != '-a'
+        sql += ' WHERE start < strftime(\'%s\',\'now\') AND end > strftime(\'%s\',\'now\')'
+    end
+    sql +=';'
+    default = default_contest()
+    
+    db = SQLite3::Database.new 'cpc.db'
+    db.execute(sql) do |row|
+        if row[0] == default
+            puts row[0] + ' *'
+        else
+            puts row[0]
+        end
+    end
+    true
 end
 
 def problems(user, args)
