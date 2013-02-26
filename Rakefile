@@ -44,7 +44,7 @@ task :init_db do
             status STRING,
             executionTime INTEGER,
             errorId INTEGER,
-            FOREIGN KEY(userId) REFERENCES user(id),
-            FOREIGN KEY(problemId) REFERENCES problem(id)
+            FOREIGN KEY(user) REFERENCES user(id),
+            FOREIGN KEY(problem) REFERENCES problem(id)
         );'
 end
