@@ -1,6 +1,3 @@
-require 'rubygems'
-require 'bundler/setup'
-
 require 'sqlite3'
 
 task :make_fancyCat do

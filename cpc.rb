@@ -1,9 +1,6 @@
 #!/usr/bin/env ruby
 #change to #!/home/pfaiman/ruby/bin/ruby to prevent tampering with runtime
 
-require 'rubygems'
-require 'bundler/setup'
-
 require 'pathname'
 
 require 'sqlite3'
