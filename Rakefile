@@ -20,6 +20,7 @@ task :init_db do
         CREATE TABLE contest (
             id INTEGER PRIMARY KEY,
             name TEXT,
+            alias TEXT,
             start INTEGER,
             end INTEGER,
             UNIQUE(name)
