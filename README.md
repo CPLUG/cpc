@@ -23,7 +23,7 @@
    standings
    config.yaml -- Only used during initialization
    [problem]/
-      [problem].txt
+      problem.txt
       config.yaml -- Optional, only used during initialization
       tests/
          [testId].in
