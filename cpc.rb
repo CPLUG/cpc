@@ -5,6 +5,7 @@ require 'pathname'
 
 require 'sqlite3'
 
+require './db.rb'
 
 if __FILE__ != $0
     puts 'Do not include or require this file.'
@@ -105,21 +106,24 @@ def grade(user, args)
 end
 
 def contests(user, args)
-    sql = 'SELECT name FROM contest'
-    if args.length != 1 || args[0] != '-a'
-        sql += ' WHERE start < strftime(\'%s\',\'now\') AND end > strftime(\'%s\',\'now\')'
-    end
-    sql +=';'
-    default = default_contest()
-    
-    db = SQLite3::Database.new 'cpc.db'
-    db.execute(sql) do |row|
-        if row[0] == default
-            puts row[0] + ' *'
+    cons = nil
+
+    DB::connect do |db|
+        if args.length != 1 || args[0] != '-a'
+            cons = db.active_contests
         else
-            puts row[0]
+            cons = db.all_contests
         end
     end
+
+    cons.each do |contest|
+        if contest == default_contest()
+            puts contest + ' *'
+        else
+            puts contest
+        end
+    end
+
     true
 end
 

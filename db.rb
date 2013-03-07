@@ -48,6 +48,21 @@ module DB
                 );'
         end
 
+        def all_contests
+            sql = 'SELECT name FROM contest;'
+            cons = @db.execute sql
+            cons.flatten
+        end
+
+        def active_contests
+            sql = '
+                SELECT name FROM contest
+                WHERE start < strftime(\'%s\',\'now\')
+                    AND end > strftime(\'%s\',\'now\');'
+            cons = @db.execute sql
+            cons.flatten
+        end
+
         def close
             @db.close
         end
