@@ -43,6 +43,7 @@ module DB
                     status STRING,
                     executionTime INTEGER,
                     errorId INTEGER,
+                    score INTEGER,
                     FOREIGN KEY(user) REFERENCES user(id),
                     FOREIGN KEY(problem) REFERENCES problem(id)
                 );'

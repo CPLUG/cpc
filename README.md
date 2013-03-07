@@ -43,7 +43,7 @@
 * User: id, name, alias
 * Problem: id, competitionId, name, alias, points, type?
 * Contest: id, name, alias, start, end
-* Submission: id, userId, problemId, time, status, executionTime, errorId
+* Submission: id, userId, problemId, time, status, executionTime, errorId, score
 
 
 * Do users have to register to compete? Or just use the CSL login?

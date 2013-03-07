@@ -2,8 +2,9 @@
 #change to #!/home/pfaiman/ruby/bin/ruby to prevent tampering with runtime
 
 require 'pathname'
-
+require 'getoptlong'
 require 'sqlite3'
+require 'date'
 
 require './db.rb'
 
@@ -29,7 +30,7 @@ grade          Grade submissions (internal only)'
 $commands = {
     :submissions => 'Usage: cpc submissions [-c contest] [-u user]
 
-Lists all submissions made by the specified user, or the current user if none is specified.
+Lists all graded submissions made by the specified user, or the current user if none is specified.
 
 The -c flag filters submissions to include only those made in the specified contest.
 ',  :scoreboard  => 'Usage: cpc scoreboard [-c contest] [-a]
@@ -93,8 +94,37 @@ def submit(user, args)
     end
 end
 
+def error_string(error_id)
+    return 'ID10T_ERROR'
+end
+
 def submissions(user, args)
-    false
+    contest = default_contest()
+    sql = 'SELECT problem.name, time, status, errorId, score
+        FROM submission 
+        JOIN problem ON problem.id = submission.problem
+        JOIN contest ON contest.id = problem.contest
+    WHERE user = ? AND contest.alias = ?'
+    
+    opts = GetoptLong.new(
+        ['--user', '-u', GetoptLong::REQUIRED_ARGUMENT],
+        ['--contest', '-c', GetoptLong::REQUIRED_ARGUMENT]
+    )
+    
+    opts.each do |opt, arg|
+        case opt
+            when '--user'
+                user = arg
+            when '--contest'
+                contest = arg
+        end
+    end
+    
+    db = SQLite3::Database.new 'cpc.db'
+    db.execute(sql, user, contest) do |row|
+        printf("%-15s %-50s %s %s", row[0], DateTime.strptime(row[1],"%s").strftime("%H:%M %Y/%m/%d"), status, status == "SUCCESS" ? row[2] : error_string(row[3]));
+    end
+    true
 end
 
 def scoreboard(user, args)
