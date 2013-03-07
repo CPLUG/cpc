@@ -50,7 +50,7 @@ By default, lists all active contests. The default contest will be followed by a
 
 The default contest is the contest that has last started, and has not yet finished.
 
-The -a flag will cause this command to display all contests, including those that have already ended and those that haven\' started yet.
+The -a flag will cause this command to display all contests, including those that have already ended and those that haven\'t started yet.
 ',  :problems    => 'Usage: cpc problems [-c contest]
 
 Lists all problems for the specified contest, or the default contest if none is specified.
