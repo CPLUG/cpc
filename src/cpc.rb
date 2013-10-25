@@ -63,6 +63,7 @@ end
 
 def contest_dir(contest=default_contest)
    return "#{$problem_loc}/#{contest}/"
+end
 
 def problem_dir(problem)
     "#{contest_dir}/#{problem}/"
@@ -222,6 +223,5 @@ else
     else
         puts "No such command.\n\n#{$commands_summary}"
         exit(false)
-    end
     end
 end
