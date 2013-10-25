@@ -4,3 +4,5 @@ $cpc_loc = '/home/michael/cpc'
 $default_contest = 'W12'
 # separate the users by some form of whitespace
 $admin_users = 'mlekande'
+
+# vim: set ft=ruby:
