@@ -134,7 +134,7 @@ def scoreboard(user, args)
 end
 
 def grade(user, args)
-    admin_users = ['mlekande']
+    admin_users = $admin_users.split(/\W+/)
     if !admin_users.include?(user)
         #return false
     end
