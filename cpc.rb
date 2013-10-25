@@ -72,9 +72,9 @@ def submit(user, args)
     if problem
         problem = File.basename(problem)
     end
-    
+
     problem_dir = "#{$problem_loc}/#{default_contest}/#{problem}"
-    
+
     if !problem
         puts 'Must specify problem.'
         false
@@ -101,16 +101,16 @@ end
 def submissions(user, args)
     contest = default_contest()
     sql = 'SELECT problem.name, time, status, errorId, score
-        FROM submission 
+        FROM submission
         JOIN problem ON problem.id = submission.problem
         JOIN contest ON contest.id = problem.contest
     WHERE user = ? AND contest.alias = ?'
-    
+
     opts = GetoptLong.new(
         ['--user', '-u', GetoptLong::REQUIRED_ARGUMENT],
         ['--contest', '-c', GetoptLong::REQUIRED_ARGUMENT]
     )
-    
+
     opts.each do |opt, arg|
         case opt
             when '--user'
@@ -119,7 +119,7 @@ def submissions(user, args)
                 contest = arg
         end
     end
-    
+
     db = SQLite3::Database.new 'cpc.db'
     db.execute(sql, user, contest) do |row|
         printf("%-15s %-50s %s %s", row[0], DateTime.strptime(row[1],"%s").strftime("%H:%M %Y/%m/%d"), status, status == "SUCCESS" ? row[2] : error_string(row[3]));
