@@ -18,50 +18,44 @@ $problem_loc = '/home/michael/cpc/Problems'
 $active_contest = 'W12'
 $cpc_loc = '/home/michael/cpc'
 
-$commands_summary = 'The following commands are available:
-help           View help text on a command
-submit         Add a new submission
-submissions    View your graded submissions
-scoreboard     View the scoreboard
-contests       List running contests
-problems       List problems
-grade          Grade submissions (internal only)'
+$commands_summary =
+    "The following commands are available:\n"\
+    "help           View help text on a command\n"\
+    "submit         Add a new submission\n"\
+    "submissions    View your graded submissions\n"\
+    "scoreboard     View the scoreboard\n"\
+    "contests       List running contests\n"\
+    "problems       List problems\n"\
+    "grade          Grade submissions (internal only)"
 
 $commands = {
-    :submissions => 'Usage: cpc submissions [-c contest] [-u user]
-
-Lists all graded submissions made by the specified user, or the current user if none is specified.
-
-The -c flag filters submissions to include only those made in the specified contest.
-',  :scoreboard  => 'Usage: cpc scoreboard [-c contest] [-a]
-
-Gives the scoreboard for the specified contest, or the default contest if none is specified.
-
-The -a flag will cause this command to factor in results from submissions made after the contest has ended.
-',  :grade       => 'Usage: cpc grade
-
-Runs the grader on all submissions in the queue.
-
-For internal use only.
-',  :submit       => 'Usage: cpc submit <problem> <file...>
-
-Submits files to the specified problem.
-',  :contests    => 'Usage: cpc contests [-a]
-
-By default, lists all active contests. The default contest will be followed by an asterisk (*).
-
-The default contest is the contest that has last started, and has not yet finished.
-
-The -a flag will cause this command to display all contests, including those that have already ended and those that haven\'t started yet.
-',  :problems    => 'Usage: cpc problems [-c contest]
-
-Lists all problems for the specified contest, or the default contest if none is specified.
-
-Unsolved problems will be followed by an asterisk (*).
-',  :help        => "Usage: cpc help [command]
-
-#{$commands_summary}
-"}
+    :submissions =>
+        "Usage: cpc submissions [-c contest] [-u user]\n"\
+        "Lists all graded submissions made by the specified user, or the current user if none is specified.\n"\
+        "The -c flag filters submissions to include only those made in the specified contest.",
+    :scoreboard =>
+        "Usage: cpc scoreboard [-c contest] [-a]\n"\
+        "Gives the scoreboard for the specified contest, or the default contest if none is specified.\n"\
+        "The -a flag will cause this command to factor in results from submissions made after the contest has ended.\n",
+    :grade =>
+        "Usage: cpc grade\n"\
+        "Runs the grader on all submissions in the queue.\n"\
+        "For internal use only.",
+    :submit =>
+        "Usage: cpc submit <problem> <file...>\n"\
+        "Submits files to the specified problem.\n",
+    :contests =>
+        "Usage: cpc contests [-a]\n"\
+        "By default, lists all active contests. The default contest will be followed by an asterisk (*).\n"\
+        "The default contest is the contest that has last started, and has not yet finished.\n"\
+        "The -a flag will cause this command to display all contests, including those that have already ended and those that haven't started yet.\n",
+    :problems =>
+        "Usage: cpc problems [-c contest]\n"\
+        "Lists all problems for the specified contest, or the default contest if none is specified.\n"\
+        "Unsolved problems will be followed by an asterisk (*).\n",
+    :help =>
+        "Usage: cpc help [command]\n" + $commands_summary
+}
 
 def default_contest
     return 'W12'
