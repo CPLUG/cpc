@@ -1,0 +1,4 @@
+$problem_loc = '/home/michael/cpc/Problems'
+$active_contest = 'W12'
+$cpc_loc = '/home/michael/cpc'
+$default_contest = 'W12'
