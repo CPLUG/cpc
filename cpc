@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ruby ./src/cpc.rb
+ruby ./src/cpc.rb $@
