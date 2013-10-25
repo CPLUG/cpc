@@ -61,13 +61,21 @@ def default_contest
     return 'W12'
 end
 
+def problem_dir(problem)
+    "#{$problem_loc}/#{default_contest}/#{problem}"
+end
+
+def submission_dir(problem, user)
+    "#{problem_dir(problem)}/submissions/queued/#{user}"
+end
+
 def submit(user, args)
     problem = args.shift
     if problem
         problem = File.basename(problem)
     end
 
-    problem_dir = "#{$problem_loc}/#{default_contest}/#{problem}"
+    problem_dir = problem_dir(problem)
 
     if !problem
         puts 'Must specify problem.'
@@ -126,7 +134,16 @@ def scoreboard(user, args)
 end
 
 def grade(user, args)
-    false
+    admin_users = ['mlekande']
+    if !admin_users.include?(user)
+        #return false
+    end
+
+    problem = args.shift
+    submitter = args.shift
+
+    puts 'Submitted files:'
+    system("ls #{submission_dir(problem, submitter)}")
 end
 
 def contests(user, args)
