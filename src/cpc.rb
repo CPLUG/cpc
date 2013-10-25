@@ -61,12 +61,19 @@ def default_contest
     return 'W12'
 end
 
+def contest_dir(contest=default_contest)
+   return "#{$problem_loc}/#{contest}/"
+
 def problem_dir(problem)
-    "#{$problem_loc}/#{default_contest}/#{problem}"
+    "#{contest_dir}/#{problem}/"
 end
 
-def submission_dir(problem, user)
-    "#{problem_dir(problem)}/submissions/queued/#{user}"
+def problem_list(contest=default_contest)
+   return Dir["#{contest_dir(contest)}/*/"]
+end
+
+def submission_dir(problem, user="")
+    "#{problem_dir(problem)}/submissions/queued/#{user}/"
 end
 
 def submit(user, args)
@@ -134,16 +141,19 @@ def scoreboard(user, args)
 end
 
 def grade(user, args)
-    admin_users = ['mlekande']
+    admin_users = ['mlekande','csc-calpoly']
     if !admin_users.include?(user)
         #return false
     end
 
-    problem = args.shift
-    submitter = args.shift
+    problems = args.any? ? [args.shift] : problem_list
+    submitter = args.any? ? args.shift : nil
 
     puts 'Submitted files:'
-    system("ls #{submission_dir(problem, submitter)}")
+    problems.each do |problem|
+       submissions=Dir["#{submission_dir(problem)}/*/"]
+    end
+    #system("ls #{submission_dir(problem, submitter)}")
 end
 
 def contests(user, args)
@@ -172,7 +182,7 @@ def problems(user, args)
     in_name = args[0]
     prob_names = {}
 
-    Dir['Problems/W12/*'].each do |path|
+    problem_list.each do |path|
         name = Pathname.new(path).basename.to_s.split('.').first
         prob_names[name] = path
     end
