@@ -6,7 +6,7 @@ require 'getoptlong'
 require 'sqlite3'
 require 'date'
 
-require './db.rb'
+require './src/db.rb'
 
 if __FILE__ != $0
     puts 'Do not include or require this file.'
