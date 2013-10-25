@@ -7,4 +7,4 @@ before_script:
 notifications:
    skip_join: true
    email: false
-   irc: "chat.freenode.net#cplug"
+   irc: "chat.freenode.net#cplug-cpc"
