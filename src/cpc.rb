@@ -223,4 +223,5 @@ else
         puts "No such command.\n\n#{$commands_summary}"
         exit(false)
     end
+    end
 end
