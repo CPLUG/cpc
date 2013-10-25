@@ -1,0 +1,6 @@
+$problem_loc = '/home/michael/cpc/Problems'
+$active_contest = 'W12'
+$cpc_loc = '/home/michael/cpc'
+$default_contest = 'W12'
+# separate the users by some form of whitespace
+$admin_users = ['mlekande']
