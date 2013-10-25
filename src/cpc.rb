@@ -13,11 +13,6 @@ if __FILE__ != $0
     exit!
 end
 
-#This really should be defined elsewhere...
-$problem_loc = '/home/michael/cpc/Problems'
-$active_contest = 'W12'
-$cpc_loc = '/home/michael/cpc'
-
 $commands_summary =
     "The following commands are available:\n"\
     "help           View help text on a command\n"\
@@ -57,12 +52,8 @@ $commands = {
         "Usage: cpc help [command]\n" + $commands_summary
 }
 
-def default_contest
-    return 'W12'
-end
-
 def problem_dir(problem)
-    "#{$problem_loc}/#{default_contest}/#{problem}"
+    "#{$problem_loc}/#{$default_contest}/#{problem}"
 end
 
 def submission_dir(problem, user)
@@ -90,7 +81,7 @@ def submit(user, args)
         args.each do |file|
             # How paranoid do we want to be for now...
             puts "Submitting #{file}... "
-            system("cat #{file} | #{$cpc_loc}/fancyCat #{default_contest} #{problem} #{file}")
+            system("cat #{file} | #{$cpc_loc}/fancyCat #{$default_contest} #{problem} #{file}")
         end
         true
     end
@@ -101,7 +92,7 @@ def error_string(error_id)
 end
 
 def submissions(user, args)
-    contest = default_contest()
+    contest = $default_contest
     sql = 'SELECT problem.name, time, status, errorId, score
         FROM submission
         JOIN problem ON problem.id = submission.problem
@@ -157,7 +148,7 @@ def contests(user, args)
     end
 
     cons.each do |contest|
-        if contest == default_contest()
+        if contest == $default_contest
             puts contest + ' *'
         else
             puts contest
