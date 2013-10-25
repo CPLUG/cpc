@@ -6,4 +6,4 @@ before_script:
 
 notifications:
    email: false
-   irc: "chat.freenode.net#ieee"
+   irc: "chat.freenode.net#cplug"
