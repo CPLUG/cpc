@@ -1,4 +1,5 @@
 # cpc
+[![Build Status](https://travis-ci.org/CPLUG/cpc.png)](https://travis-ci.org/CPLUG/cpc)
 
 ## Install
 
