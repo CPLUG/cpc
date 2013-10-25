@@ -12,3 +12,9 @@ task :init_db do
         db.create_tables
     end
 end
+
+task :test do
+    # Do some testing here
+end
+
+task :default => :test

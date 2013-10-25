@@ -1,0 +1,10 @@
+language: ruby
+rvm:
+   - 1.9.3
+before_script:
+   - sqlite3 cpc.db ""
+
+notifications:
+   skip_join: true
+   email: false
+   irc: "chat.freenode.net#cplug"
