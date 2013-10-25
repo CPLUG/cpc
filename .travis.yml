@@ -1,0 +1,9 @@
+language: ruby
+rvm:
+   - 1.9.3
+before_script:
+   - sqlite3 cpc.db
+
+notifications:
+   email: false
+   irc: "chat.freenode.net#ieee"
