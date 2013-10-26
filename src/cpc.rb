@@ -136,14 +136,22 @@ def scoreboard(user, args)
 end
 
 def compile(file_path) 
-    extension = File.extname(file_path)
-    instructions = {
-        ".c" => "gcc #{file_path}",
-        ".cpp" => "g++ #{file_path}",
-        ".java" => "javac #{file_path}",
-        ".sh" => "chmod +x #{file_path}",
-    }
-    false
+    dirname = File.dirname(file_path)
+    filename = File.basename(file_path)
+    fileext = File.extname(file_path)
+
+    command = {
+        ".c" => "gcc #{filename}",
+        ".cpp" => "g++ #{filename}",
+        ".java" => "javac #{filename}",
+        ".sh" => "chmod +x #{filename}",
+    }[fileext]
+
+    if command
+        system("cd #{dirname} && #{command}")
+    end
+
+    true
 end
 
 def run(submission, inFile)
