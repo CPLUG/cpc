@@ -4,6 +4,7 @@
 require 'getoptlong'
 require 'sqlite3'
 require 'date'
+require 'docopt'
 
 require './src/db.rb'
 require './config.rb'
