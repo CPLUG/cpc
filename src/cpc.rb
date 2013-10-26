@@ -14,6 +14,23 @@ if __FILE__ != $0
     exit!
 end
 
+doc = <<DOCOPT
+CPC.
+
+Usage:
+   cpc help
+
+Options:
+   help  View help text on a command.
+DOCOPT
+begin
+   require "pp"
+   pp Docopt::docopt(doc)
+rescue Docopt::Exit => e
+   puts e.message
+end
+
+
 $commands_summary =
     "The following commands are available:\n"\
     "help           View help text on a command\n"\
@@ -291,16 +308,16 @@ def help(user, args)
     end
 end
 
-if ARGV[0] == nil
-    puts "Usage: cpc <command>\n\n#{$commands_summary}"
-else
-    cmd = ARGV[0].strip.downcase.to_sym
-    user = `/usr/bin/whoami`.strip
-    if $commands.include? cmd
-        cmd_f = method cmd
-        exit(cmd_f.call(user, ARGV[1..-1]))
-    else
-        puts "No such command.\n\n#{$commands_summary}"
-        exit(false)
-    end
-end
+#if ARGV[0] == nil
+#    puts "Usage: cpc <command>\n\n#{$commands_summary}"
+#else
+#    cmd = ARGV[0].strip.downcase.to_sym
+#    user = `/usr/bin/whoami`.strip
+#    if $commands.include? cmd
+#        cmd_f = method cmd
+#        exit(cmd_f.call(user, ARGV[1..-1]))
+#    else
+#        puts "No such command.\n\n#{$commands_summary}"
+#        exit(false)
+#    end
+#end
