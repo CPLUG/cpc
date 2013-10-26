@@ -17,11 +17,11 @@ $commands_summary =
     "The following commands are available:\n"\
     "help           View help text on a command\n"\
     "submit         Add a new submission\n"\
-    "submissions    View your graded submissions\n"\
-    "scoreboard     View the scoreboard\n"\
-    "contests       List running contests\n"\
     "problems       List problems\n"\
     "grade          Grade submissions (internal only)"
+#   "submissions    View your graded submissions\n"\
+#   "scoreboard     View the scoreboard\n"\
+#   "contests       List running contests\n"\
 
 $commands = {
 #   :submissions =>
