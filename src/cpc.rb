@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 #change to #!/home/pfaiman/ruby/bin/ruby to prevent tampering with runtime
 
-require 'pathname'
 require 'getoptlong'
 require 'sqlite3'
 require 'date'
@@ -64,7 +63,7 @@ end
 def problem_list(contest=$default_contest)
     contests_paths = File.join(contest_dir(contest), "*")
     Dir[contests_paths].map do |contest_abs_path|
-        Pathname.new(contest_abs_path).basename
+        File.basename(contest_abs_path)
     end
 end
 
@@ -227,7 +226,7 @@ def problems(user, args)
     prob_names = {}
 
     problem_list.each do |path|
-        name = Pathname.new(path).basename.to_s.split('.').first
+        name = File.basename(path).to_s.split('.').first
         prob_names[name] = path
     end
 
