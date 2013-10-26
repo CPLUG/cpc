@@ -62,7 +62,7 @@ def problem_dir(problem)
 end
 
 def problem_list(contest=$default_contest)
-    return Dir[File.join($problem_loc, contest, "*")]
+    Dir[File.join($problem_loc, contest, "*")]
 end
 
 def submission_dir(problem, user="")
