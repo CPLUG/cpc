@@ -162,7 +162,7 @@ def run(file_path, in_file_path)
     in_file_dirname = File.dirname(in_file_path)
     in_file_basename = File.basename(in_file_path, ".in")
     out_file_path = File.join(dirname, in_file_basename + ".out")
-    expected_out_path = File.join(in_file_dirname, in_file_basename + "out")
+    expected_out_path = File.join(in_file_dirname, in_file_basename + ".out")
 
     command = {
         ".c" => "./a.out",
