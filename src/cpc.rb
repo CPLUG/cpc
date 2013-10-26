@@ -255,9 +255,8 @@ def problems(user, args)
     in_name = args[0]
     prob_names = {}
 
-    problem_list.each do |path|
-        name = File.basename(path).to_s.split('.').first
-        prob_names[name] = path
+    problem_list.each do |problem_name|
+        prob_names[problem_name] = File.join(problem_dir(problem_name), "problem.txt")
     end
 
     if prob_names.keys.include? in_name
