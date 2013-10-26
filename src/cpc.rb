@@ -54,7 +54,7 @@ $commands = {
 }
 
 def contest_dir(contest=default_contest)
-   return "#{$problem_loc}/#{contest}/"
+    return "#{$problem_loc}/#{contest}/"
 end
 
 def problem_dir(problem)
