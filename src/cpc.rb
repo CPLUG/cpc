@@ -180,6 +180,11 @@ def run(file_path, in_file_path)
     end
 
     system("cd #{dirname} && #{command} < #{in_file_path} > #{out_file_path}")
+
+    if !File.exists?(out_file_path)
+        return false
+    end
+
     system("diff -b #{expected_out_path} #{out_file_path} > /dev/null")
 end
 
