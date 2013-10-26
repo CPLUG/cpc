@@ -175,7 +175,8 @@ def grade(user, args)
 
     puts 'Submitted files:'
     problems.each do |problem|
-       inFiles=Dir["#{problem_dir(problem)}/*.in"]
+       in_files_path = File.join(problem_dir(problem), "tests", "*.in")
+       in_files = Dir[in_files_path]
        Dir["#{submission_dir(problem)}/*/"].each do |submission|
           user = File.basename(submission)
           next if !submitter.nil? and user != submitter
@@ -190,7 +191,7 @@ def grade(user, args)
 
           compile(file)
           success = true
-          inFiles.each do |inFile|
+          in_files.each do |inFile|
              success &= run(submission, inFile)
           end
           move_submission(submission, "#{problem_dir(problem)}/graded/")
