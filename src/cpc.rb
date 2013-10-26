@@ -133,11 +133,28 @@ def scoreboard(user, args)
     false
 end
 
-def compile(submission) 
+def compile(file_path) 
+    extension = File.extname(file_path)
+    instructions = {
+        ".c" => "gcc #{file_path}",
+        ".cpp" => "g++ #{file_path}",
+        ".java" => "javac #{file_path}",
+        ".sh" => "chmod +x #{file_path}",
+    }
+    false
 end
 
 def run(submission, inFile)
-   false
+    extension = File.extname(submission, file_path)
+    instructions = {
+        ".c" => "a.out",
+        ".cpp" => "./a.out",
+        ".java" => "java #{file_path}",
+        ".pl" => "perl #{file_path}",
+        ".py" => "python #{file_path}",
+        ".rb" => "ruby #{file_path}",
+        ".sh" => "#{file_path}",
+    }
 end
 
 def move_submission(old_file, graded_dir)
@@ -167,8 +184,9 @@ def grade(user, args)
              puts "#{files.size} files submitted, expected 1"
              next
           end
+          file = files.first
 
-          compile(submission)
+          compile(file)
           success = true
           inFiles.each do |inFile|
              success &= run(submission, inFile)
