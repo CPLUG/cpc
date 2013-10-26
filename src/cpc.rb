@@ -7,6 +7,7 @@ require 'sqlite3'
 require 'date'
 
 require './src/db.rb'
+require './config.rb'
 
 if __FILE__ != $0
     puts 'Do not include or require this file.'
