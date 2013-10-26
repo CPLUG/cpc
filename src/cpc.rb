@@ -7,16 +7,12 @@ require 'sqlite3'
 require 'date'
 
 require './src/db.rb'
+require './config.rb'
 
 if __FILE__ != $0
     puts 'Do not include or require this file.'
     exit!
 end
-
-#This really should be defined elsewhere...
-$problem_loc = '/home/michael/cpc/Problems'
-$active_contest = 'W12'
-$cpc_loc = '/home/michael/cpc'
 
 $commands_summary =
     "The following commands are available:\n"\
@@ -57,24 +53,20 @@ $commands = {
         "Usage: cpc help [command]\n" + $commands_summary
 }
 
-def default_contest
-    return 'W12'
-end
-
 def contest_dir(contest=default_contest)
     return "#{$problem_loc}/#{contest}/"
 end
 
 def problem_dir(problem)
-    "#{contest_dir}/#{problem}/"
+    File.join($problem_loc, $default_contest, problem)
 end
 
-def problem_list(contest=default_contest)
-   return Dir["#{contest_dir(contest)}/*/"]
+def problem_list(contest=$default_contest)
+   return Dir[File.join($problem_loc, contest, "*")]
 end
 
 def submission_dir(problem, user="")
-    "#{problem_dir(problem)}/submissions/queued/#{user}/"
+    File.join(problem_dir(problem), "submissions", "queued", user)
 end
 
 def submit(user, args)
@@ -98,7 +90,7 @@ def submit(user, args)
         args.each do |file|
             # How paranoid do we want to be for now...
             puts "Submitting #{file}... "
-            system("cat #{file} | #{$cpc_loc}/fancyCat #{default_contest} #{problem} #{file}")
+            system("cat #{file} | #{$fancycat_loc} #{$default_contest} #{problem} #{file}")
         end
         true
     end
@@ -109,7 +101,7 @@ def error_string(error_id)
 end
 
 def submissions(user, args)
-    contest = default_contest()
+    contest = $default_contest
     sql = 'SELECT problem.name, time, status, errorId, score
         FROM submission
         JOIN problem ON problem.id = submission.problem
@@ -141,9 +133,18 @@ def scoreboard(user, args)
     false
 end
 
+def compile(submission) 
+end
+
+def run(submission, inFile)
+   false
+end
+
+def move_submission(submission, problem_dir)
+end
+
 def grade(user, args)
-    admin_users = ['mlekande','csc-calpoly']
-    if !admin_users.include?(user)
+    if !$admin_users.include?(user)
         #return false
     end
 
@@ -152,9 +153,26 @@ def grade(user, args)
 
     puts 'Submitted files:'
     problems.each do |problem|
-       submissions=Dir["#{submission_dir(problem)}/*/"]
+       inFiles=Dir["#{problem_dir(problem)}/*.in"]
+       Dir["#{submission_dir(problem)}/*/"].each do |submission|
+          user = File.basename(submission)
+          next if !submitter.nil? and user != submitter
+          puts "Grading #{submission_dir(problem,user)}"
+
+          files=Dir["#{submission_dir(problem,user)}/*/"]
+          if files.size != 1
+             puts "#{files.size} files submitted, expected 1"
+             next
+          end
+
+          compile(submission)
+          success = true
+          inFiles.each do |inFile|
+             success &= run(submission, inFile)
+          end
+          move_submission(submission, "#{problem_dir(problem)}/graded/")
+       end
     end
-    #system("ls #{submission_dir(problem, submitter)}")
 end
 
 def contests(user, args)
@@ -169,7 +187,7 @@ def contests(user, args)
     end
 
     cons.each do |contest|
-        if contest == default_contest()
+        if contest == $default_contest
             puts contest + ' *'
         else
             puts contest

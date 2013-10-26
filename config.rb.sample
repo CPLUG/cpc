@@ -1,0 +1,11 @@
+# Directory of CPC problems
+$problem_loc = '/home/michael/cpc/Problems'
+
+# Location of fancyCat binary
+$fancycat_loc = '/home/michael/cpc/fancyCat'
+
+# Default contest directory
+$default_contest = 'W12'
+
+# Login names of admins that are able to run `cpc grade`
+$admin_users = ['mlekande']
