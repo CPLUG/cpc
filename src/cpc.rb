@@ -54,11 +54,11 @@ $commands = {
 }
 
 def problem_dir(problem)
-    "#{$problem_loc}/#{$default_contest}/#{problem}"
+    File.join($problem_loc, $default_contest, problem)
 end
 
 def submission_dir(problem, user)
-    "#{problem_dir(problem)}/submissions/queued/#{user}"
+    File.join(problem_dir(problem), "submissions", "queued", user)
 end
 
 def submit(user, args)
@@ -162,8 +162,9 @@ end
 def problems(user, args)
     in_name = args[0]
     prob_names = {}
+    problem_paths = File.join($problem_loc, $default_contest, "*")
 
-    Dir['Problems/W12/*'].each do |path|
+    Dir[problem_paths].each do |path|
         name = Pathname.new(path).basename.to_s.split('.').first
         prob_names[name] = path
     end
