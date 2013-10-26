@@ -62,7 +62,7 @@ def problem_dir(problem)
 end
 
 def problem_list(contest=$default_contest)
-   return Dir[File.join($problem_loc, contest, "*")]
+    return Dir[File.join($problem_loc, contest, "*")]
 end
 
 def submission_dir(problem, user="")
@@ -141,9 +141,9 @@ def run(submission, inFile)
 end
 
 def move_submission(old_file, graded_dir)
-   user=File.basename(submission)
-   index=(1..1.0/0).find{|e|!File.exist?("#{graded_dir}/#{user}.#{e}")}
-   File.rename(old_file,"#{graded_dir}/#{user}.#{e}")
+    user=File.basename(submission)
+    index=(1..1.0/0).find{|e|!File.exist?("#{graded_dir}/#{user}.#{e}")}
+    File.rename(old_file,"#{graded_dir}/#{user}.#{e}")
 end
 
 def grade(user, args)
