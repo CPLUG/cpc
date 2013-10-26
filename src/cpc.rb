@@ -24,14 +24,14 @@ $commands_summary =
     "grade          Grade submissions (internal only)"
 
 $commands = {
-    :submissions =>
-        "Usage: cpc submissions [-c contest] [-u user]\n"\
-        "Lists all graded submissions made by the specified user, or the current user if none is specified.\n"\
-        "The -c flag filters submissions to include only those made in the specified contest.",
-    :scoreboard =>
-        "Usage: cpc scoreboard [-c contest] [-a]\n"\
-        "Gives the scoreboard for the specified contest, or the default contest if none is specified.\n"\
-        "The -a flag will cause this command to factor in results from submissions made after the contest has ended.\n",
+#   :submissions =>
+#       "Usage: cpc submissions [-c contest] [-u user]\n"\
+#       "Lists all graded submissions made by the specified user, or the current user if none is specified.\n"\
+#       "The -c flag filters submissions to include only those made in the specified contest.",
+#   :scoreboard =>
+#       "Usage: cpc scoreboard [-c contest] [-a]\n"\
+#       "Gives the scoreboard for the specified contest, or the default contest if none is specified.\n"\
+#       "The -a flag will cause this command to factor in results from submissions made after the contest has ended.\n",
     :grade =>
         "Usage: cpc grade\n"\
         "Runs the grader on all submissions in the queue.\n"\
@@ -39,11 +39,11 @@ $commands = {
     :submit =>
         "Usage: cpc submit <problem> <file...>\n"\
         "Submits files to the specified problem.\n",
-    :contests =>
-        "Usage: cpc contests [-a]\n"\
-        "By default, lists all active contests. The default contest will be followed by an asterisk (*).\n"\
-        "The default contest is the contest that has last started, and has not yet finished.\n"\
-        "The -a flag will cause this command to display all contests, including those that have already ended and those that haven't started yet.\n",
+#   :contests =>
+#       "Usage: cpc contests [-a]\n"\
+#       "By default, lists all active contests. The default contest will be followed by an asterisk (*).\n"\
+#       "The default contest is the contest that has last started, and has not yet finished.\n"\
+#       "The -a flag will cause this command to display all contests, including those that have already ended and those that haven't started yet.\n",
     :problems =>
         "Usage: cpc problems [-c contest]\n"\
         "Lists all problems for the specified contest, or the default contest if none is specified.\n"\
