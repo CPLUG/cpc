@@ -177,7 +177,12 @@ def grade(user, args)
     problems.each do |problem|
         in_files_path = File.join(problem_dir(problem), "tests", "*.in")
         in_files = Dir[in_files_path]
-        Dir["#{submission_dir(problem)}/*/"].each do |submission|
+
+        submissions_paths = File.join(submission_dir(problem), "*")
+        submissions = Dir[submissions_paths]
+
+        submissions.each do |submission|
+            puts submission
             user = File.basename(submission)
             next if !submitter.nil? and user != submitter
             puts "Grading #{submission}"
