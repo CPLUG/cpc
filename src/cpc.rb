@@ -186,7 +186,8 @@ def grade(user, args)
             next if !submitter.nil? and user != submitter
             puts "Grading #{submission}"
 
-            files=Dir["#{submission_dir(problem,user)}/*/"]
+            files_paths = File.join(submission_dir(problem, user), "*")
+            files = Dir[files_paths]
             if files.size != 1
                 puts "#{files.size} files submitted, expected 1"
                 next
