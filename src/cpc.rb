@@ -194,6 +194,7 @@ def grade(user, args)
           move_submission(submission, "#{problem_dir(problem)}/graded/")
        end
     end
+    true
 end
 
 def contests(user, args)
