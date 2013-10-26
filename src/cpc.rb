@@ -223,6 +223,7 @@ def grade(user, args)
             in_files.each do |in_file_path|
                 success &= run(file, in_file_path)
             end
+            puts success ? "Passed" : "Failed"
             move_submission(submission, "#{problem_dir(problem)}/graded/")
         end
     end
