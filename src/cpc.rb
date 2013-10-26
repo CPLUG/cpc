@@ -82,7 +82,7 @@ def submit(user, args)
         args.each do |file|
             # How paranoid do we want to be for now...
             puts "Submitting #{file}... "
-            system("cat #{file} | #{$cpc_loc}/fancyCat #{$default_contest} #{problem} #{file}")
+            system("cat #{file} | #{$fancycat_loc} #{$default_contest} #{problem} #{file}")
         end
         true
     end
