@@ -154,17 +154,31 @@ def compile(file_path)
     true
 end
 
-def run(submission, inFile)
-    extension = File.extname(submission, file_path)
-    instructions = {
-        ".c" => "a.out",
+def run(file_path, in_file_path)
+    dirname = File.dirname(file_path)
+    fileext = File.extname(file_path)
+    basename = File.basename(file_path, fileext)
+
+    in_file_basename = File.basename(in_file_path, ".in")
+    out_file_path = File.join(dirname, in_file_basename + ".out")
+
+    command = {
+        ".c" => "./a.out",
         ".cpp" => "./a.out",
-        ".java" => "java #{file_path}",
+        ".java" => "java #{basename}",
         ".pl" => "perl #{file_path}",
         ".py" => "python #{file_path}",
         ".rb" => "ruby #{file_path}",
-        ".sh" => "#{file_path}",
-    }
+        ".sh" => "./#{file_path}",
+    }[fileext]
+
+    if command
+        system("cd #{dirname} && #{command} < #{in_file_path} > #{out_file_path}")
+        true
+    else
+        puts "Your language is not supported, or unknown file extension"
+        false
+    end
 end
 
 def move_submission(old_file, graded_dir)
