@@ -218,8 +218,8 @@ def grade(user, args)
 
             compile(file)
             success = true
-            in_files.each do |inFile|
-                success &= run(submission, inFile)
+            in_files.each do |in_file_path|
+                success &= run(file, in_file_path)
             end
             move_submission(submission, "#{problem_dir(problem)}/graded/")
         end
