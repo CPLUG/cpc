@@ -159,8 +159,10 @@ def run(file_path, in_file_path)
     fileext = File.extname(file_path)
     basename = File.basename(file_path, fileext)
 
+    in_file_dirname = File.dirname(in_file_path)
     in_file_basename = File.basename(in_file_path, ".in")
     out_file_path = File.join(dirname, in_file_basename + ".out")
+    expected_out_path = File.join(in_file_dirname, in_file_basename + "out")
 
     command = {
         ".c" => "./a.out",
@@ -172,18 +174,18 @@ def run(file_path, in_file_path)
         ".sh" => "./#{file_path}",
     }[fileext]
 
-    if command
-        system("cd #{dirname} && #{command} < #{in_file_path} > #{out_file_path}")
-        true
-    else
+    if !command
         puts "Your language is not supported, or unknown file extension"
-        false
+        return false
     end
+
+    system("cd #{dirname} && #{command} < #{in_file_path} > #{out_file_path}")
+    system("diff -b #{expected_out_path} #{out_file_path} > /dev/null")
 end
 
 def move_submission(old_file, graded_dir)
-    user=File.basename(submission)
-    index=(1..1.0/0).find{|e|!File.exist?("#{graded_dir}/#{user}.#{e}")}
+    user = File.basename(submission)
+    index = (1..1.0/0).find{|e| !File.exist?("#{graded_dir}/#{user}.#{e}")}
     File.rename(old_file,"#{graded_dir}/#{user}.#{e}")
 end
 
