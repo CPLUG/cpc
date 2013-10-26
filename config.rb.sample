@@ -8,4 +8,4 @@ $fancycat_loc = '/home/michael/cpc/fancyCat'
 $default_contest = 'W12'
 
 # Login names of admins that are able to run `cpc grade`
-$admin_users = ['mlekande']
+$admin_users = ['mlekande','csc-cplug']

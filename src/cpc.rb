@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 #change to #!/home/pfaiman/ruby/bin/ruby to prevent tampering with runtime
 
-require 'pathname'
 require 'getoptlong'
 require 'sqlite3'
 require 'date'
@@ -53,11 +52,22 @@ $commands = {
         "Usage: cpc help [command]\n" + $commands_summary
 }
 
+def contest_dir(contest=default_contest)
+    File.join($problem_loc, contest)
+end
+
 def problem_dir(problem)
     File.join($problem_loc, $default_contest, problem)
 end
 
-def submission_dir(problem, user)
+def problem_list(contest=$default_contest)
+    contests_paths = File.join(contest_dir(contest), "*")
+    Dir[contests_paths].map do |contest_abs_path|
+        File.basename(contest_abs_path)
+    end
+end
+
+def submission_dir(problem, user="")
     File.join(problem_dir(problem), "submissions", "queued", user)
 end
 
@@ -125,16 +135,105 @@ def scoreboard(user, args)
     false
 end
 
-def grade(user, args)
-    if !$admin_users.include?(user)
-        #return false
+def compile(file_path) 
+    dirname = File.dirname(file_path)
+    filename = File.basename(file_path)
+    fileext = File.extname(file_path)
+
+    command = {
+        ".c" => "gcc #{filename}",
+        ".cpp" => "g++ #{filename}",
+        ".java" => "javac #{filename}",
+        ".sh" => "chmod +x #{filename}",
+    }[fileext]
+
+    if command
+        system("cd #{dirname} && #{command}")
     end
 
-    problem = args.shift
-    submitter = args.shift
+    true
+end
 
-    puts 'Submitted files:'
-    system("ls #{submission_dir(problem, submitter)}")
+def run(file_path, in_file_path)
+    dirname = File.dirname(file_path)
+    fileext = File.extname(file_path)
+    basename = File.basename(file_path, fileext)
+
+    in_file_dirname = File.dirname(in_file_path)
+    in_file_basename = File.basename(in_file_path, ".in")
+    out_file_path = File.join(dirname, in_file_basename + ".out")
+    expected_out_path = File.join(in_file_dirname, in_file_basename + ".out")
+
+    command = {
+        ".c" => "./a.out",
+        ".cpp" => "./a.out",
+        ".java" => "java #{basename}",
+        ".pl" => "perl #{file_path}",
+        ".py" => "python #{file_path}",
+        ".rb" => "ruby #{file_path}",
+        ".sh" => "./#{file_path}",
+    }[fileext]
+
+    if !command
+        puts "Your language is not supported, or unknown file extension"
+        return false
+    end
+
+    system("cd #{dirname} && #{command} < #{in_file_path} > #{out_file_path}")
+
+    if !File.exists?(out_file_path)
+        return false
+    end
+
+    system("diff -b #{expected_out_path} #{out_file_path} > /dev/null")
+end
+
+def move_submission(old_file, graded_dir)
+    user = File.basename(old_file)
+    index = (1..1.0/0).find{|e| !File.exist?("#{graded_dir}/#{user}.#{e}")}
+    File.rename(old_file,"#{graded_dir}/#{user}.#{index}")
+end
+
+def grade(user, args)
+    if !$admin_users.include?(user)
+        return false
+    end
+
+    problems = args.any? ? [args.shift] : problem_list
+    submitter = args.any? ? args.shift : nil
+
+    problems.each do |problem|
+        in_files_path = File.join(problem_dir(problem), "tests", "*.in")
+        in_files = Dir[in_files_path]
+
+        submissions_paths = File.join(submission_dir(problem), "*")
+        submissions = Dir[submissions_paths]
+
+        submissions.each do |submission|
+            user = File.basename(submission)
+            next if !submitter.nil? and user != submitter
+
+            puts "\nGrading #{user} - #{problem}"
+
+            files_paths = File.join(submission_dir(problem, user), "*")
+            files = Dir[files_paths]
+            if files.size != 1
+                puts "#{files.size} files submitted, expected 1"
+                next
+            end
+            file = files.first
+
+            compile(file)
+            success = true
+            in_files.each do |in_file_path|
+                success &= run(file, in_file_path)
+                puts "\t#{File.basename in_file_path}: #{success ? "Passed" : "Failed"}"
+            end
+            puts "Result: #{success ? "Passed" : "Failed"}"
+            move_submission(submission, "#{problem_dir(problem)}/graded/")
+        end
+    end
+    true
 end
 
 def contests(user, args)
@@ -162,11 +261,9 @@ end
 def problems(user, args)
     in_name = args[0]
     prob_names = {}
-    problem_paths = File.join($problem_loc, $default_contest, "*")
 
-    Dir[problem_paths].each do |path|
-        name = Pathname.new(path).basename.to_s.split('.').first
-        prob_names[name] = path
+    problem_list.each do |problem_name|
+        prob_names[problem_name] = File.join(problem_dir(problem_name), "problem.txt")
     end
 
     if prob_names.keys.include? in_name
