@@ -1,5 +1,11 @@
+# Directory of CPC problems
 $problem_loc = '/home/michael/cpc/Problems'
+
+# Location of CPC project
 $cpc_loc = '/home/michael/cpc'
+
+# Default contest directory
 $default_contest = 'W12'
-# separate the users by some form of whitespace
+
+# Login names of admins that are able to run `cpc grade`
 $admin_users = ['mlekande']
