@@ -165,7 +165,7 @@ end
 
 def grade(user, args)
     if !$admin_users.include?(user)
-        #return false
+        return false
     end
 
     problems = args.any? ? [args.shift] : problem_list
