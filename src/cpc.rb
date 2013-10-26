@@ -140,7 +140,10 @@ def run(submission, inFile)
    false
 end
 
-def move_submission(submission, problem_dir)
+def move_submission(old_file, graded_dir)
+   user=File.basename(submission)
+   index=(1..1.0/0).find{|e|!File.exist?("#{graded_dir}/#{user}.#{e}")}
+   File.rename(old_file,"#{graded_dir}/#{user}.#{e}")
 end
 
 def grade(user, args)
@@ -157,7 +160,7 @@ def grade(user, args)
        Dir["#{submission_dir(problem)}/*/"].each do |submission|
           user = File.basename(submission)
           next if !submitter.nil? and user != submitter
-          puts "Grading #{submission_dir(problem,user)}"
+          puts "Grading #{submission}"
 
           files=Dir["#{submission_dir(problem,user)}/*/"]
           if files.size != 1
