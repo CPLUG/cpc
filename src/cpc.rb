@@ -197,7 +197,6 @@ def grade(user, args)
     problems = args.any? ? [args.shift] : problem_list
     submitter = args.any? ? args.shift : nil
 
-    puts 'Submitted files:'
     problems.each do |problem|
         in_files_path = File.join(problem_dir(problem), "tests", "*.in")
         in_files = Dir[in_files_path]
@@ -208,7 +207,8 @@ def grade(user, args)
         submissions.each do |submission|
             user = File.basename(submission)
             next if !submitter.nil? and user != submitter
-            puts "Grading #{submission}"
+
+            puts "\nGrading #{user} - #{problem}"
 
             files_paths = File.join(submission_dir(problem, user), "*")
             files = Dir[files_paths]
@@ -222,8 +222,9 @@ def grade(user, args)
             success = true
             in_files.each do |in_file_path|
                 success &= run(file, in_file_path)
+                puts "\t#{File.basename in_file_path}: #{success ? "Passed" : "Failed"}"
             end
-            puts success ? "Passed" : "Failed"
+            puts "Result: #{success ? "Passed" : "Failed"}"
             move_submission(submission, "#{problem_dir(problem)}/graded/")
         end
     end
