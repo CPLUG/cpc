@@ -54,7 +54,7 @@ $commands = {
 }
 
 def contest_dir(contest=default_contest)
-    return "#{$problem_loc}/#{contest}/"
+    File.join($problem_loc, contest)
 end
 
 def problem_dir(problem)
@@ -62,7 +62,10 @@ def problem_dir(problem)
 end
 
 def problem_list(contest=$default_contest)
-    Dir[File.join($problem_loc, contest, "*")]
+    contests_paths = File.join(contest_dir(contest), "*")
+    Dir[contests_paths].map do |contest_abs_path|
+        Pathname.new(contest_abs_path).basename
+    end
 end
 
 def submission_dir(problem, user="")
