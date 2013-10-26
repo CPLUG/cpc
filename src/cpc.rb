@@ -182,7 +182,6 @@ def grade(user, args)
         submissions = Dir[submissions_paths]
 
         submissions.each do |submission|
-            puts submission
             user = File.basename(submission)
             next if !submitter.nil? and user != submitter
             puts "Grading #{submission}"
