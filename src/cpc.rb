@@ -73,16 +73,15 @@ end
 
 def submit(user, args)
     problem = args.shift
-    if problem
-        problem = File.basename(problem)
-    end
-
-    problem_dir = problem_dir(problem)
-
     if !problem
         puts 'Must specify problem.'
-        false
-    elsif !File.directory?(problem_dir)
+        return false
+    end
+
+    problem = File.basename(problem)
+    problem_dir = problem_dir(problem)
+
+    if !File.directory?(problem_dir)
         puts "Invalid problem: #{problem}"
         false
     elsif args.length == 0
