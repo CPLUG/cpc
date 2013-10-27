@@ -5,6 +5,8 @@ before_script:
    - sqlite3 cpc.db ""
 
 notifications:
-   skip_join: true
    email: false
-   irc: "chat.freenode.net#cplug-cpc"
+   irc:
+      channels:
+         - "chat.freenode.net#cplug-cpc"
+      skip_join: true
