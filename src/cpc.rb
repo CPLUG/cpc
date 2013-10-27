@@ -45,9 +45,9 @@ $commands = {
 #       "The default contest is the contest that has last started, and has not yet finished.\n"\
 #       "The -a flag will cause this command to display all contests, including those that have already ended and those that haven't started yet.\n",
     :problems =>
-        "Usage: cpc problems [-c contest]\n"\
-        "Lists all problems for the specified contest, or the default contest if none is specified.\n"\
-        "Unsolved problems will be followed by an asterisk (*).\n",
+        "Usage: cpc problems <problem>\n"\
+        "Lists all problems for the default contest.\n"\
+        "Or, if a problem name is given, print the text of that problem.\n",
     :help =>
         "Usage: cpc help [command]\n" + $commands_summary
 }
