@@ -2,11 +2,11 @@
 #change to #!/home/pfaiman/ruby/bin/ruby to prevent tampering with runtime
 
 require 'getoptlong'
-require 'sqlite3'
+#require 'sqlite3'
 require 'date'
 
-require './src/db.rb'
-require './config.rb'
+#require './src/db.rb'
+require '/home/csc-cplug/cpc/config.rb'
 
 if __FILE__ != $0
     puts 'Do not include or require this file.'
@@ -61,7 +61,7 @@ def problem_dir(problem)
 end
 
 def problem_list(contest=$default_contest)
-    contests_paths = File.join(contest_dir(contest), "*")
+    contests_paths = File.join(contest_dir(contest), "*", "/")
     Dir[contests_paths].map do |contest_abs_path|
         File.basename(contest_abs_path)
     end
@@ -167,6 +167,7 @@ def run(file_path, in_file_path)
         ".c" => "./a.out",
         ".cpp" => "./a.out",
         ".java" => "java #{basename}",
+        ".js" => "~grade_cstaley/bin/js #{basename}",
         ".pl" => "perl #{file_path}",
         ".py" => "python #{file_path}",
         ".rb" => "ruby #{file_path}",
@@ -191,6 +192,7 @@ def move_submission(old_file, graded_dir)
     user = File.basename(old_file)
     index = (1..1.0/0).find{|e| !File.exist?("#{graded_dir}/#{user}.#{e}")}
     File.rename(old_file,"#{graded_dir}/#{user}.#{index}")
+    #system("mv #{old_file} #{graded_dir}/#{user}.#{index}")
 end
 
 def grade(user, args)
@@ -225,11 +227,12 @@ def grade(user, args)
             compile(file)
             success = true
             in_files.each do |in_file_path|
-                success &= run(file, in_file_path)
-                puts "\t#{File.basename in_file_path}: #{success ? "Passed" : "Failed"}"
+                r = run(file, in_file_path)
+                success &= r
+                puts "\t#{File.basename in_file_path}: #{r ? "Passed" : "Failed"}"
             end
             puts "Result: #{success ? "Passed" : "Failed"}"
-            move_submission(submission, "#{problem_dir(problem)}/graded/")
+            move_submission(submission, "#{problem_dir(problem)}/submissions/graded")
         end
     end
     true

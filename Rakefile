@@ -1,4 +1,4 @@
-require './src/db.rb'
+#require './src/db.rb'
 
 
 task :make_fancyCat do

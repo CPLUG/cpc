@@ -1,0 +1,147 @@
+                                 UnCowsay
+                                 15 points
+   I have the following line in my .bashrc (cowsay can be found in
+~mlekande/bin): `fortune | cowsay -n`
+
+   However, sometimes I want to get back to the original text. Unfortunately, I
+suck at programming. I need you to write a program that gives me back the
+original forune text.
+
+
+                                  Input
+   The input will be the output from the command `fortune | cowsay -n`.
+
+
+                                 Output
+   The output will be the original fortune, before it was piped into cowsay.
+
+
+                               Constraints
+   Only the default cowfile will be used.
+
+
+                                 Samples
+Input 1:
+ _____________________________________________________________________
+< "I'd love to go out with you, but my favorite commercial is on TV." >
+ ---------------------------------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+Output 1:
+"I'd love to go out with you, but my favorite commercial is on TV."
+
+
+Input 2:
+ ________________________________________________________________________________
+/ Tyger, Tyger, burning bright            Where the hammer?  Where the chain?    \
+| In the forests of the night,            In what furnace was thy brain?         |
+| What immortal hand or eye               What the anvil?  What dread grasp      |
+| Dare frame thy fearful symmetry?        Dare its deadly terrors clasp?         |
+|                                                                                |
+| Burnt in distant deeps or skies         When the stars threw down their spears |
+| The cruel fire of thine eyes?           And water'd heaven with their tears    |
+| On what wings dare he aspire?           Dare he laugh his work to see?         |
+| What the hand dare seize the fire?      Dare he who made the lamb make thee?   |
+|                                                                                |
+| And what shoulder & what art            Tyger, Tyger, burning bright           |
+| Could twist the sinews of they heart?   In the forests of the night,           |
+| And when thy heart began to beat        What immortal hand or eye              |
+| What dread hand & what dread feet       Dare frame thy fearful symmetry?       |
+|                                                                                |
+| Could fetch it from the furnace deep                                           |
+| And in thy horrid ribs dare steep                                              |
+| In the well of sanguine woe?                                                   |
+| In what clay & in what mould                                                   |
+| Were thy eyes of fury roll'd?                                                  |
+\                 -- William Blake, "The Tyger"                                  /
+ --------------------------------------------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+Output 2:
+Tyger, Tyger, burning bright            Where the hammer?  Where the chain?
+In the forests of the night,            In what furnace was thy brain?
+What immortal hand or eye               What the anvil?  What dread grasp
+Dare frame thy fearful symmetry?        Dare its deadly terrors clasp?
+
+Burnt in distant deeps or skies         When the stars threw down their spears
+The cruel fire of thine eyes?           And water'd heaven with their tears
+On what wings dare he aspire?           Dare he laugh his work to see?
+What the hand dare seize the fire?      Dare he who made the lamb make thee?
+
+And what shoulder & what art            Tyger, Tyger, burning bright
+Could twist the sinews of they heart?   In the forests of the night,
+And when thy heart began to beat        What immortal hand or eye
+What dread hand & what dread feet       Dare frame thy fearful symmetry?
+
+Could fetch it from the furnace deep
+And in thy horrid ribs dare steep
+In the well of sanguine woe?
+In what clay & in what mould
+Were thy eyes of fury roll'd?
+                -- William Blake, "The Tyger"
+
+
+Input 3:
+ _______________________________________________________
+< <|Rain|> #define struct union /* great space saver */ >
+ -------------------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+Output 3:
+<|Rain|> #define struct union /* great space saver */
+
+
+Input 4:
+ ________________________________________________________________________________
+/ _/I\_____________o______________o___/I\     l  * /    /_/ *   __  '     .* l   \
+| I"""_____________l______________l___"""I\   l      *//      _l__l_   . *.  l   |
+|  [__][__][(******)__][__](******)[__][] \l  l-\ ---//---*----(oo)----------l   |
+|  [][__][__(******)][__][_(******)_][__] l   l  \\ // ____ >-(    )-<    /  l   |
+|  [__][__][_l    l[__][__][l    l][__][] l   l \\)) ._****_.(......) .@@@:::l   |
+|  [][__][__]l   .l_][__][__]   .l__][__] l   l   ll  _(o_o)_        (@*_*@  l   |
+|  [__][__][/   <_)[__][__]/   <_)][__][] l   l   ll (  / \  )     /   / / ) l   |
+|  [][__][ /..,/][__][__][/..,/_][__][__] l   l  / \\  _\  \_   /     _\_\   l   |
+|  [__][__(__/][__][__][_(__/_][__][__][] l   l______________________________l   |
+|  [__][__]] l     ,  , .      [__][__][] l                                      |
+|  [][__][_] l   . i. '/ ,     [][__][__] l        /\**/\       season's         |
+|  [__][__]] l  O .\ / /, O    [__][__][] l       ( o_o  )_)       greetings     |
+| _[][__][_] l__l======='=l____[][__][__] l_______,(u  u  ,),__________________  |
+|  [__][__]]/  /l\-------/l\   [__][__][]/       {}{}{}{}{}{}<R>                 |
+|                                                                                |
+\ In Ellen's house it is warm and toasty while fuzzies play in the snow outside. /
+ --------------------------------------------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+Output 4:
+_/I\_____________o______________o___/I\     l  * /    /_/ *   __  '     .* l
+I"""_____________l______________l___"""I\   l      *//      _l__l_   . *.  l
+ [__][__][(******)__][__](******)[__][] \l  l-\ ---//---*----(oo)----------l
+ [][__][__(******)][__][_(******)_][__] l   l  \\ // ____ >-(    )-<    /  l
+ [__][__][_l    l[__][__][l    l][__][] l   l \\)) ._****_.(......) .@@@:::l
+ [][__][__]l   .l_][__][__]   .l__][__] l   l   ll  _(o_o)_        (@*_*@  l
+ [__][__][/   <_)[__][__]/   <_)][__][] l   l   ll (  / \  )     /   / / ) l
+ [][__][ /..,/][__][__][/..,/_][__][__] l   l  / \\  _\  \_   /     _\_\   l
+ [__][__(__/][__][__][_(__/_][__][__][] l   l______________________________l
+ [__][__]] l     ,  , .      [__][__][] l
+ [][__][_] l   . i. '/ ,     [][__][__] l        /\**/\       season's
+ [__][__]] l  O .\ / /, O    [__][__][] l       ( o_o  )_)       greetings
+_[][__][_] l__l======='=l____[][__][__] l_______,(u  u  ,),__________________
+ [__][__]]/  /l\-------/l\   [__][__][]/       {}{}{}{}{}{}<R>
+
+In Ellen's house it is warm and toasty while fuzzies play in the snow outside.

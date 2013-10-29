@@ -6,8 +6,8 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#define PROBLEMS_LOC "/home/michael/cpc/Problems"
-#define MAX_FILESIZE 2560
+#define PROBLEMS_LOC "/home/csc-cplug/cpc/Problems"
+#define MAX_FILESIZE 25600
 
 void safe_chdir(char *dir) {
     struct stat s;
@@ -44,5 +44,7 @@ int main(int argc, char *argv[]) {
     f = fopen(file, "w+");
     for (i = 0; i < MAX_FILESIZE && (c = getchar()) != EOF; i++)
         fputc(c, f);
+    if (i == MAX_FILESIZE)
+        printf("Error: File was too large. Max filesize is: %d", MAX_FILESIZE);
     fclose(f);
 }

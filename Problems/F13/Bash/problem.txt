@@ -1,0 +1,58 @@
+                                   Bash
+                                 25 points
+   Once, after a long night of programming, I stumbled upon an interesting
+command in bash. If you press alt+shift+[, you get output that looks something
+like:
+
+`.{bash{_{history,profile},rc},dmrc,htoprc,mybashrc,pinerc,screenrc,vimrc}`
+
+   Try it! This output is related to how bash does tab completion for files.
+
+   For this challenge, you are given a list of file names. Output what bash
+would print if you pressed alt+shift+[ in a directory with those files in it.
+
+
+                                  Input
+   The first line of input will be N, the number files in the directory. The
+next N lines will each contain a single file name. A file name may include
+spaces.
+
+                                 Output
+   The output will be the output bash would give you if you pressed
+alt+shift+[ in a directory with the files in it.
+
+
+                               Constraints
+   1 <= N <= 10^5
+
+
+                                 Samples
+Input 1:
+9
+.bashrc
+.bash_profile
+.bash_history
+.vimrc
+.dmrc
+.htoprc
+.mybashrc
+.pinerc
+.screenrc
+
+Output 1:
+.{bash{_{history,profile},rc},dmrc,htoprc,mybashrc,pinerc,screenrc,vimrc}
+
+
+Input 2:
+8
+authorized_keys2
+config
+id_dsa
+id_dsa.pub
+id_rsa
+id_rsa.pub
+known_hosts
+known_hosts.old
+
+Output 2:
+{authorized_keys2,config,id_{dsa{,.pub},rsa{,.pub}},known_hosts{,.old}}

@@ -1,0 +1,80 @@
+                              SocialNetworks
+                                30 points
+   You have a group of friends on Facebook. Some of these friends are friends
+with each other, and some aren't.
+
+   One day, you come across an old group of acounts on MySpace that you think
+are the same group of friends. Unfortunately, everyone used a different alias
+back then, and you can't figure out which (if any) of the accounts correspond
+to which friend. However, you can see which accounts is friends with each
+other.
+
+   You know that everyone in this group is stubborn about their relationships.
+If they are friends now then they would have been friends back then, and if
+they aren't friends now then they wouldn't have been friends back then.
+
+   Armed with just the knowledge of friendships between accounts, can you tell
+if it's possible that this is the same group of friends?
+
+
+                                  Input
+   The first line of input will be N, the number friends in the group. The
+next N lines will each contain a row in an friendship table. The i'th row and
+j'th column in this table will be '1' if account i is friends with account j,
+or '0' otherwise.
+
+   The next N lines contain another friendship table, in the same format.
+
+
+                                 Output
+   The output will be 'Y' if it's possible for it to be the same group of
+Friends, or 'N' otherwise.
+
+
+                               Constraints
+   1 <= N <= 20
+   You can never be friends with yourself.
+
+
+                                 Samples
+Input 1:
+3
+0 1 0
+1 0 1
+0 1 0
+0 0 1
+0 0 0
+1 0 0
+
+Output 1:
+N
+
+
+Input 2:
+4
+0 1 0 1
+1 0 1 0
+0 1 0 1
+1 0 1 0
+0 0 1 1
+0 0 1 1
+1 1 0 0
+1 1 0 0
+
+Output 2:
+Y
+
+
+Input 3:
+4
+0 1 0 1
+1 0 1 0
+0 1 0 1
+1 0 1 0
+0 0 1 0
+0 0 1 1
+1 1 0 1
+0 1 1 0
+
+Output 3:
+N

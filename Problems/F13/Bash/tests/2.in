@@ -1,0 +1,9 @@
+8
+authorized_keys2
+config
+id_dsa
+id_dsa.pub
+id_rsa
+id_rsa.pub
+known_hosts
+known_hosts.old

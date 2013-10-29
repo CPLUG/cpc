@@ -1,0 +1,52 @@
+                               SudokuCheck
+                                10 points
+   {Up to 3 bonus points for writing a clever backstory to thos problem. :D}
+
+   Write a program that checks if a given solution to Sudoku is valid. That
+is, make sure each integer occurs only once in each row, column, and 3x3
+square.
+
+
+                                  Input
+   The input will consist of 9 lines. Each line will contain 9 space-seperated
+digits.
+
+
+                                 Output
+   The output will be 'Y' if the solution is a valid Sudoku solution, and 'N'
+otherwise.
+
+
+                               Constraints
+   Every integer will be between 1 and 9.
+
+
+                                 Samples
+Input 1:
+1 2 5 3 7 8 9 4 6
+3 7 8 9 6 4 2 1 5
+4 9 6 1 2 5 8 3 7
+2 6 9 4 5 3 1 7 8
+8 4 1 7 9 2 6 5 3
+5 3 7 8 1 6 4 9 2
+9 1 2 5 8 7 3 6 4
+6 5 3 2 4 9 7 8 1
+7 8 4 6 3 1 5 2 9
+
+Output 1:
+Y
+
+
+Input 2:
+1 2 5 3 7 8 9 4 6
+3 7 8 9 6 4 2 1 5
+4 9 1 1 2 5 8 3 7
+2 6 9 4 5 3 1 7 8
+8 4 1 7 9 2 6 5 3
+5 3 7 8 1 6 4 9 2
+9 1 2 5 8 7 3 6 4
+6 5 3 2 4 9 7 8 1
+7 8 4 6 3 1 5 2 9
+
+Output 2:
+N

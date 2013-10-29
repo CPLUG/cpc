@@ -1,0 +1,90 @@
+                                 BuzzFizz
+                                 5 points
+   FizzBuzz is a common interview question to weed out bad programmers. You
+can read more about it here:
+
+http://www.codinghorror.com/blog/2007/02/why-cant-programmers-program.html
+
+   Not satisfied with this, Peter Faiman asks you to solve a more complicated
+version of FizzBuzz. He calls it: BuzzFizz. (Originality isn't Peter's strong
+suit.)
+
+   If you make Peter happy, he'll give you a donut. You like donuts, right?
+
+   First, you are given a number N to count up to, then a list of integer/word
+pairs. Every time you reach a number that is a multiple of an integer in your
+list, print out the corresponding word. If if it a multiple of multiple
+integers, print out all the corresponding words, in order of the smallest
+integer.
+
+   If it isn't a multiple of any integer in your list, just print out the
+number.
+
+
+                                  Input
+   The first line of input will be N, the number to count up to. The next
+line will be K, the number of integers to check. The next K lines will each
+have a positive integer, followed by a space, followed by an alphanumeric
+string. 
+
+
+                                 Output
+   The output will contain N lines. Line numbering starts at 1. Each line will
+either be the line number, or the words corresponding to the numbers that are
+multiples of the line number.
+
+
+                               Constraints
+   1 < N <= 10^5
+   1 <= integer in every pair <= N
+   word in every pair will be alphanumeric (a-zA-Z0-9), no spaces
+   every paired integer will be unique
+
+
+                                 Samples
+Input 1:
+20
+2
+5 Fizz
+3 Buzz
+
+Output 1:
+1
+2
+Buzz
+4
+Fizz
+Buzz
+7
+8
+Buzz
+Fizz
+11
+Buzz
+13
+14
+BuzzFizz
+16
+17
+Buzz
+19
+Fizz
+
+
+Input 2:
+10
+2
+1 Javascipt
+2 Sucks
+
+Output 2:
+Javascipt
+JavasciptSucks
+Javascipt
+JavasciptSucks
+Javascipt
+JavasciptSucks
+Javascipt
+JavasciptSucks
+Javascipt
+JavasciptSucks
