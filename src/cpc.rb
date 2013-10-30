@@ -192,7 +192,6 @@ def move_submission(old_file, graded_dir)
     user = File.basename(old_file)
     index = (1..1.0/0).find{|e| !File.exist?("#{graded_dir}/#{user}.#{e}")}
     File.rename(old_file,"#{graded_dir}/#{user}.#{index}")
-    #system("mv #{old_file} #{graded_dir}/#{user}.#{index}")
 end
 
 def grade(user, args)
