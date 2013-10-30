@@ -1,0 +1,49 @@
+                               GameOfFlags
+   Flags is a breezy game. There are N flags in the middle of a playing field,
+then you choose a set of K numbers, a_1, a_2, ..., a_K.
+
+   You then take turns removing a_i flags from the middle of the field. The
+last player to remove a flag wins.
+
+   You get to take your turn first. Can you force a win?
+
+
+                                  Input
+   The first line of input will contain two integers, N and K. The next line
+will contain K integers, representing a_1, a_2, ..., a_k, respectively.
+
+
+                                 Output
+   The output will be a line containing the string "I win!" if you can force a
+win over your opponent, or a line containing the string "I lose..." otherwise.
+
+
+                               Constraints
+   0 < N < 20000000
+   0 < K < 6
+   0 < a_i < 100
+
+
+                                 Samples
+Input 1:
+50 3
+1 2 3
+
+Output 1:
+I win!
+
+
+Input 2:
+50 4
+4 3 2 1
+
+Output 2:
+I lose...
+
+
+Input 3:
+4 1
+5
+
+Output 3:
+I lose...

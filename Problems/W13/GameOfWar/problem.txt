@@ -1,0 +1,80 @@
+                                GameOfWar
+   War is an incredibly complex 2-player card game. You start out with a
+standard deck of 52 cards, and then distribute the cards into two stacks.
+
+   Play then begins with each player flipping the card from the top of their
+deck. The player that flips the higher card wins the round. If both players
+flip cards of the same value (suits are irrelevant), then both players flip
+four more cards. The player with the higher fourth card wins the round (the
+other three flipped cards are ignored). If this results in another tie, the
+process is repeated until either there is no tie, or one player is out of
+cards.
+
+   At the end of every round, the round's winner takes the cards in play and
+places them on the bottom of their stack in the order in which they were
+flipped, with their card before their opponent's.
+
+   To illustrate this, let's walk through an example round. The round starts,
+and both you and your opponent flip over a card to put it in play. You flip
+over a 2 of Hearts, and your opponent flips over a 2 of Spades:
+
+   My Cards    |   His Cards
+            2H | 2S            
+
+   Since this is a tie, both players flip over four more cards. You flip over a
+Ace of Hearts, a King of Clubs, a Queen of Spades, and a 3 of Spades, in that
+order. Your opponent flips over a 3 of Clubs, a 4 of Hearts, a 5 of Hearts, and
+an Ace of Spades.
+
+   My Cards    |   His Cards
+3S QS KC AH 2H | 2S 3C 4H 5H AS
+
+   Since your opponent's Ace of Spades has a higher value than your 3 of
+Spades, your opponent wins this round. Your opponent then appends cards to
+their stack in the following order: 2S, 2H, 3C, AH, 4H, KC, 5H, QS, AS, 3S.
+Thus, 3S will be at the bottom of your opponent's stack.
+
+   Aces are the highest card in the deck, and 2's are the lowest.
+
+   Gameplay ends when a player needs to flip a card, but has no cards in their
+stack. Note that this means that it is possible to not have any cards in your
+stack and still be in the game. The winner is the player with cards remaining.
+
+   Given the starting deck for both players, who wins?
+
+
+                                  Input
+   The input will consist of two lines: the first being a the list and order
+of cards in your deck, and the second being the cards in your opponent's deck.
+
+   Every game supplied will be guaranteed to terminate and have a winner.
+
+
+                                 Output
+   The output will be "I win!" if you win the game, or "I lose..." otherwise.
+
+
+                                 Samples
+Input 1:
+3H AS KC 2C QD 5C 7H AH 5H 4S 6D QC 9S 4H 10H 2H JC KS 10S 4D AC 8D 9D QH 4C 6C KD AD 3D 6S 8H 3C 2D JS 7C
+2S 3S 5S 5D 6H 7S 7D 8S 8C 9H 9C 10C 10D JH JD QS KH
+
+Output 1:
+I win!
+
+
+Input 2:
+5D JD 3C QS 2S 3S 9S QD 4C 10C KD 9H 7S 4S 8D 9C 3D 6D AD 10D 5S 7D QC 3H 7C 6S JS 8C JH 5C 2D 10S AH 6H 8S 7H 5H 8H 4H AC KH 2C KS AS 10H
+2H 4D 6C 9D JC QH KC
+
+Output 2:
+I win!
+
+
+Input 3:
+5C 7S JC QC QD 5S 10C 3C 8C 4C AC 10D AS 3D 7C 4D 6C 9D 6S QS 8S 2S 9S 2H 10S 4S JD KC 9H KD 10H JH QH JS 2C 3S 7D 7H 4H 8D KH KS 8H 2D 5D 6D
+3H 5H 6H 9C AH AD
+
+Output 3:
+I lose...
+

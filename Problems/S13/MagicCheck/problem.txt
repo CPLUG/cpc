@@ -1,0 +1,71 @@
+                               MagicCheck
+                                5 points
+   Your friend is fascinated by magic squares, which are a N by N array of
+numbers whose columns and rows all add up to the same number (diagonals are
+irrelevant).
+
+   Your friend particularly enjoys trying to come up with new magic squares.
+Unfortunately, your friend is bad at math, and has difficulties checking if
+the numbers he comes up actually form a magic square. Being the good friend
+that you are, you decide to write a program that does this for him.
+
+   Given an array of numbers, output whether or not the square provided forms
+a magic square.
+
+
+                                  Input
+   The first line of input will contain one integer, N, the number of rows and
+columns in the magic square. The next N lines will each contain N integers,
+a[i][j].
+
+
+                                 Output
+   The output will be a line containing the string "Yes" if the provided
+numbers form a magic square, or a line containing the string "No" otherwise.
+
+
+                               Constraints
+   2 < N < 40
+   -10^7 < a[i][j] < 10^7
+
+
+                                 Samples
+Input 1:
+3
+2 7 6
+9 5 1
+4 3 8
+
+Output 1:
+Yes
+
+
+Input 2:
+3
+23 28 21
+24 22 26
+27 20 25
+
+Output 2:
+No
+
+
+Input 3:
+3
+1 0 -1
+0 0 0
+-1 0 1
+
+Output 3:
+Yes
+
+
+Input 4:
+4
+1398 -174492 -29448 66375
+28046 -94890 -136163 66840
+-29458 66385 1404 -174498
+-136153 66830 28040 -94884
+
+Output 4:
+Yes

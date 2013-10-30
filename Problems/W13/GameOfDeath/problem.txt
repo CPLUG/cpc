@@ -1,0 +1,64 @@
+                               GameOfDeath
+   Conway's Game of Life is a morbid game. At least, it is when you take away
+the repopulation rule. Being the optimist that you are, you try to remember
+back to better days. Unfortunately, your memory is failing you, and you don't
+remember exactly how you got to your current state.
+
+   The game board is a H-by-W finite square grid. Each cell in the grid is
+either "alive" (indicated by a '*') or "dead" (indicated by a ' ').
+
+   Given a game board, the rules for generating the next board are:
+
+      1) If an "alive" cell has 2 or 3 neighbors, then it remains alive.
+      2) Any other cell is "dead".
+
+   Given a game board, must print out a game board of the same size that
+generates the given board.
+
+
+                                  Input
+   The first line of input will contain two integers: H and W. The next H
+lines will contain W characters. If cell is "alive", it will be represented by
+a '*', and it will be represented by ' ' if it is dead.
+
+
+                                 Output
+   The output will be H lines, each containing W characters. Every cell must 
+either be '*' for "alive" or ' ' for "dead". The game board that this
+represents must generate the input game board.
+
+   Note that you must output whitespace for *all* dead cells.
+
+   Note that there are multiple correct answers for this problem.
+
+
+                               Constraints
+   0 < H < 16
+   0 < W < 16
+   Each game board is guaranteed to have a generating state.
+
+
+                                 Samples
+Input 1:
+4 4
+    
+ ** 
+ ** 
+    
+
+Output 1:
+    
+ ** 
+ ** 
+    
+
+Input 2:
+3 4
+ *  
+   *
+  **
+
+Output 2:
+**  
+  **
+  **

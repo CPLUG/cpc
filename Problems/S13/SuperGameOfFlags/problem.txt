@@ -1,0 +1,79 @@
+                             SuperGameOfFlags
+                                 15 points
+   Flags is a breezy game. There are N flags in the middle of a playing field,
+then you choose a set of K numbers, a_1, a_2, ..., a_K.
+
+   You then take turns removing a_i flags from the middle of the field. The
+last player to remove a flag wins.
+
+   You get to take your turn first. Can you force a win?
+
+   Note that this is the exact same problem as last CPC with one difference:
+The constraints are raised to be much higher. A slow, but working, solution is
+provided at the end of this document.
+
+
+                                  Input
+   The first line of input will contain two integers, N and K. The next line
+will contain K integers, representing a_1, a_2, ..., a_k, respectively.
+
+
+                                 Output
+   The output will be a line containing the string "I win!" if you can force a
+win over your opponent, or a line containing the string "I lose..." otherwise.
+
+
+                               Constraints
+   0 < N <= 10^18
+   0 < K <= 10
+   0 < a_i <= 10^4
+
+
+                                 Samples
+Input 1:
+50 3
+1 2 3
+
+Output 1:
+I win!
+
+
+Input 2:
+50 4
+4 3 2 1
+
+Output 2:
+I lose...
+
+
+Input 3:
+4 1
+5
+
+Output 3:
+I lose...
+
+
+                             Sample Solution
+import java.util.*;
+
+public class GameOfFlags {
+   public static void main(String[] args) {
+      Scanner scan = new Scanner(System.in);
+      int N = scan.nextInt(), K = scan.nextInt();
+      int i, o;
+      int[] a = new int[K];
+      boolean[] isN = new boolean[N+1];
+      
+      for (i = 0; i < K; i++)
+         a[i] = scan.nextInt();
+      Arrays.sort(a);
+      
+      for (i = 0; i < N+1; i++)
+         for (o = 0; !isN[i] && o < K; o++)
+            if (i - a[o] >= 0 && !isN[i - a[o]])
+               isN[i] = true;
+      
+      System.out.println("I "+(isN[N] ? "win!" : "lose..."));
+   }
+}

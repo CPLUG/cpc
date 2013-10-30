@@ -1,0 +1,68 @@
+                                FlowFill
+                                20 points
+   Flow can be a frustrating game. It's played on a 2-D grid by connecting
+one point on the grid to its matching point elsewhere. Your lines must fill up
+the entire grid in order to beat the level.
+
+   You are down to the last two points, and are trying to figure out if it's
+possible to have a single line that connects these two, while filling up the
+rest of the grid.
+
+   Given a grid and two matching points, output whether or not you can draw a
+single line that fills all the empty grid squares.
+
+
+                                  Input
+   The first line of input will contain two integers, H and W, the number of
+rows and columns in the grid, respectively. The next H lines will contain W
+characters.
+
+   A '*' character signals one of the two points that need to be connected.
+There will always be two.
+
+   A 'x' character indicates a square that has already been filled.
+
+   A '.' character indicates a square that has not yet been filled.
+
+                                 Output
+   The output will be a line containing the string "Yes" if you can fill the
+entire grid with a single line connecting the two points, or a line containing
+the string "No" otherwise.
+
+
+                               Constraints
+   2 < H < 10
+   2 < W < 10
+
+
+                                 Samples
+Input 1:
+3 3
+*..
+...
+..*
+
+Output 1:
+Yes
+
+
+Input 2:
+4 4
+*...
+....
+....
+...*
+
+Output 2:
+No
+
+
+Input 3:
+4 5
+*...x
+.....
+....x
+....*
+
+Output 3:
+No

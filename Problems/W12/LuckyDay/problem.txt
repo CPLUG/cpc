@@ -34,7 +34,7 @@ the sequence, Q_6. Hurry, your friend's life may hang in the balance!
 
                                   Input
    Input will consist of a single line containing 5 space-seperated integers,
-representing the first 5 lottow numbers (Q_1, Q_2, Q_3, Q_4, and Q_5),
+representing the first 5 lotto numbers (Q_1, Q_2, Q_3, Q_4, and Q_5),
 respectively.
 
 

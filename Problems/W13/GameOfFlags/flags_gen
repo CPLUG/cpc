@@ -1,0 +1,9 @@
+#!/bin/bash
+
+N=$((RANDOM%1000000+1000000))
+K=$((RANDOM%5+1))
+echo "$N" "$K"
+for ((i=0;i!=K;++i)) ; do
+   printf "$((RANDOM%99+1)) "
+done
+printf "\n"

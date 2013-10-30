@@ -1,0 +1,119 @@
+                              GameOfTrains
+   Trainyard is a puzzling game. You must place tracks in order to guide a
+train to an exit. Unfortunately, the game runs very slowly on your (old,
+antiquated) phone.
+
+   Tired of waiting on your phone to see if you completed the problem
+successfully, you decide to simulate the game on your computer, which is much
+faster than your phone.
+
+   Given a track configuration, output whether or not the train can
+successfully reach an exit.
+
+
+                                  Input
+   The first line of input will contain two integers, H and W. The next H
+lines will contain W characters.
+
+   A ' ' character means that no track is in this square. A train cannot be on
+a square without any track.
+
+   A '|' character means that a vertical track is in this square. A train can
+only enter and exit up and down on a vertical track.
+
+   A '-' character means that a horizontal track is in this square. A train can
+only enter and exit left and right on a horizontal track.
+
+   A '+' character means that a horizontal and vertical track cross on this
+square. A train can continue forward on a track cross, but cannot change
+direction.
+
+   A '*' character means that a roundabout is in this square. A train can
+enter and leave a roundabout in any direction.
+
+   A 'S' character means that the train starts in this square. There will be
+one starting location in every input.
+
+   A 'E' character means that the train can exit in this square. A train can
+enter this square from any direction.
+
+   Note that a roundabout is the only way to change direction. See Input 2 for
+a demonstration of this behavior.
+
+
+                                 Output
+   The output will be a line containing the string "I win!" if the train can
+successfully reach an exit, or a line containing the string "I lose..."
+otherwise.
+
+
+                               Constraints
+   0 < H < 16
+   0 < W < 16
+
+   There will only one starting location per input.
+   
+   There may be multiple exits per input, but there will always be at least
+one.
+
+   No exit will be adjacent to the starting location.
+
+
+                                 Samples
+
+Input 1:
+2 2
+S|
+|E
+
+Output 1:
+I lose...
+
+
+Input 2:
+2 3
+S-| 
+  E
+
+Output 2:
+I lose...
+
+
+Input 3:
+3 4
+S-+-
+|E+*
+*-**
+
+Output 3:
+I win!
+
+
+Input 4:
+3 4
+S- E
+|   
+E   
+
+Output 4:
+I win!
+
+
+Input 5:
+3 7
+ ******
+E++++++
+ S*****
+
+Output 5:
+I lose...
+
+
+Input 6:
+3 7
+ ******
+E+++++*
+ S**** 
+
+Output 6:
+I win!
